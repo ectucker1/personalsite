@@ -3,7 +3,7 @@
 This repo contains the code for my personal website.
 It is a mostly static site created using [11ty](https://www.11ty.dev/).
 
-The site isn't yet live, but will eventually be served at [ectcetera.net](https://www.ectcetera.net/).
+The site isn't yet finished, but is served nonetheless at [ectcetera.net](https://www.ectcetera.net/).
 
 ## License
 

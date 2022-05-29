@@ -131,3 +131,7 @@ dist
 
 # Eleventy output
 _site/
+
+# WebStorm files
+.idea/
+*.iml

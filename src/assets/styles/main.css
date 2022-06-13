@@ -19,7 +19,7 @@ body {
 }
 
 /* Needed for fonts to work with Pure grids. */
-html, button, input, select, textarea, footer, span,
+html, button, input, select, textarea, footer, span, a,
 .pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
 }
@@ -29,23 +29,32 @@ p {
     line-height: 2.0rem;
 }
 
-a:link {
+a:link:not([class]) {
     color: #2563EB;
 }
 
-/* visited link */
-a:visited {
+a:visited:not([class]) {
     color: #3730A3;
 }
 
-/* mouse over link */
-a:hover {
+a:hover:not([class]) {
     color: #60A5FA;
 }
 
 /* selected link */
-a:active {
+a:active:not([class]) {
     color: #2563EB;
+}
+
+img:not([class]) {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.clear {
+    text-decoration: none;
+    color: inherit;
 }
 
 h2 {

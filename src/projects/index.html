@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<h2 class="section-title">Projects</h2>
+<div class="home-top">
+  {% renderFile './src/_includes/projects_content.md' %}
+</div>
+<div>
+  {%- for project in collections.project reversed -%}
+    {% renderFile './src/_includes/project_preview.html', project %}
+  {%- endfor -%}
+</div>

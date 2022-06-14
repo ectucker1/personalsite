@@ -2,15 +2,25 @@
 @import "../../../node_modules/purecss/build/pure.css";
 
 @font-face {
-    font-family: "Open Sans";
-    /* TODO convert formats */
-    src: url("../fonts/opensans/regular.ttf") format("truetype");
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('/assets/fonts/opensans/open-sans-v29-latin-regular.woff2') format('woff2'),
+        url('/assets/fonts/opensans/open-sans-v29-latin-regular.woff') format('woff'),
+        url('/assets/fonts/opensans/open-sans-v29-latin-regular.ttf') format('truetype'),
+        url('/assets/fonts/opensans/open-sans-v29-latin-regular.svg#OpenSans') format('svg');
 }
 
 @font-face {
-    font-family: "Courier Prime";
-    /* TODO convert formats */
-    src: url("../fonts/sharetechmono/regular.ttf") format("truetype");
+    font-family: 'Share Tech Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff2') format('woff2'),
+        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff') format('woff'),
+        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.ttf') format('truetype'),
+        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.svg#ShareTechMono') format('svg');
 }
 
 body {
@@ -84,7 +94,7 @@ h2 {
 }
 
 .header-name {
-    font-family: "Courier Prime", monospace;
+    font-family: "Share Tech Mono", monospace;
     font-size: 3.052rem;
     display: inline-block;
     text-transform: uppercase;
@@ -107,7 +117,7 @@ h2 {
 }
 
 .header-title {
-    font-family: "Courier Prime", monospace;
+    font-family: "Share Tech Mono", monospace;
     font-size: 2.441rem;
     display: inline-block;
     text-transform: uppercase;

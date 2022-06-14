@@ -7,8 +7,8 @@
         <h1 class="header-title">CS Student</h1>
     </div>
     <nav class="nav-container" role="navigation" aria-label="main navigation">
-        <a class="nav-item nav-item-active" href="/">Home</a>
-        <a class="nav-item" href="/projects">Projects</a>
-        <a class="nav-item" href="/contact">Contact</a>
+        <a class="nav-item {% if permalink == "/" %}nav-item-active{% endif %}" href="/">Home</a>
+        <a class="nav-item {% if permalink == "/projects/" %}nav-item-active{% endif %}" href="/projects">Projects</a>
+        <a class="nav-item {% if permalink == "/contact/" %}nav-item-active{% endif %}" href="/contact">Contact</a>
     </nav>
 </header>

@@ -1,4 +1,11 @@
 <div class="project pure-g">
+    <div class="project-image-col pure-u">
+        <div class="project-image-content">
+            <a href="{{url}}">
+                <img class="pure-img project-image-highlight" src="{{ data.preview_img }}" alt="Project poster for {{ data.title }}">
+            </a>
+        </div>
+    </div>
     <div class="project-text-col pure-u">
         <div class="project-text-content">
             <h3 class="project-title">
@@ -7,13 +14,6 @@
             <span class="project-date"><b>{{ data.end_date }}</b></span>
             {{ templateContent | markdownPreview }}
             <a href="{{url}}">Read More</a>
-        </div>
-    </div>
-    <div class="project-image-col pure-u">
-        <div class="project-image-content">
-            <a href="{{url}}">
-                <img class="pure-img project-image-highlight" src="{{ data.preview_img }}">
-            </a>
         </div>
     </div>
 </div>

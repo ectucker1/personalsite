@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
     "cssnano": "^5.1.8",
+    "markdown-it-html5-media": "^0.7.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",

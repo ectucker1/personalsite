@@ -1,4 +1,6 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
+const markdownIt = require("markdown-it");
+const { html5Media } = require('markdown-it-html5-media');
 
 // Site directories
 const dir = {
@@ -36,9 +38,17 @@ module.exports = (eleventyConfig) => {
             // Not the proper way to remove an HTML element, but it works
             return content.replaceAll('<p>---endpreview</p>', '');
         }
-
         return content;
     });
+
+    // Markdown-it configuration
+    let options = {
+        html: true,
+        breaks: false,
+        linkify: true
+    };
+    let markdownLibrary = markdownIt(options).use(html5Media);
+    eleventyConfig.setLibrary('md', markdownLibrary);
 
     return {
         dir,

@@ -2,7 +2,7 @@
 tags: ['project', 'highlight']
 title: ectert
 preview_img: /assets/images/ectert.png
-date: 2020-06-17
+date: 2021-08-22
 start_date: 2020
 end_date: 2021
 ---

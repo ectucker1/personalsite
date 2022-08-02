@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: cobblestone
-preview_img: /assets/images/cobblestone.png
+preview_img: cobblestone.png
 date: 2016-08-20
 start_date: 2016
 end_date: 2020
@@ -32,6 +32,6 @@ It's similarly lightweight, and maintains a larger feature set and community tha
 
 Here are some screenshots of cobblestone demos:
 
-![Demo showing thousands of pixel-art rocks falling](/assets/images/projects/cobblestone/performance_demo.png)
+{% image "projects/cobblestone/performance_demo.png", "Demo showing thousands of pixel-art rocks falling" %}
 
-![Demo showing a dynamic 2D lighting shader](/assets/images/projects/cobblestone/lighting_demo.png)
+{% image "projects/cobblestone/lighting_demo.png", "Demo showing a dynamic 2D lighting shader" %}

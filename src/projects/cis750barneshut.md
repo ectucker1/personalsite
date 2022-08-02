@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: CIS750 Barnes-Hut
-preview_img: /assets/images/cis750barneshut.png
+preview_img: cis750barneshut.png
 date: 2022-05-12
 start_date: 2022
 end_date: 2022
@@ -28,7 +28,7 @@ Here's a video showing several interesting simulations in our visualizer:
 This chart shows the running time of our parallel and serial implementations as the number of bodies increases.
 The Y-axis is logarithmic.
 
-![Graph of execution time vs. number of bodies](/assets/images/projects/cis750barneshut/executiontimevsbodies.png)
+{% image "projects/cis750barneshut/executiontimevsbodies.png", "Graph of execution time vs. number of bodies" %}
 
 There are several remaining optimizations from prior implementations, most notably methods for parallelizing the construction of the octree.
 More work could also be done to verify correct outputs here &mdash; problems with units kept us only comparing to our serial version.

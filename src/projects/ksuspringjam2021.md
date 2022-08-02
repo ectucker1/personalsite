@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: The Ouroboros Labyrinth
-preview_img: /assets/images/ksuspringjam2021.png
+preview_img: ksuspringjam2021.png
 date: 2021-02-28
 start_date: 2021
 end_date: 2021
@@ -20,5 +20,7 @@ Some of the puzzles stumped me as the creator &mdash; my teammates were pretty d
 Here are some gifs and screenshots of the game:
 
 ![Gif showing the snake eating its tail](/assets/images/projects/ksuspringjam2021/snakeeating.gif)
-![Game screenshot featuring a puzzle with a door and a switch](/assets/images/projects/ksuspringjam2021/screenshot1.png)
-![Game screenshot featuring cracked tiles](/assets/images/projects/ksuspringjam2021/screenshot2.png)
+
+{% image "projects/ksuspringjam2021/screenshot1.png", "Game screenshot featuring a puzzle with a door and a switch" %}
+
+{% image "projects/ksuspringjam2021/screenshot2.png", "Game screenshot featuring cracked tiles" %}

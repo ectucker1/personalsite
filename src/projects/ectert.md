@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: ectert
-preview_img: /assets/images/ectert.png
+preview_img: ectert.png
 date: 2021-08-22
 start_date: 2020
 end_date: 2021
@@ -18,9 +18,9 @@ It was also my first foray into C++, which has since become one of my main langu
 
 Here's a couple of my favorite renders from ectert:
 
-![3D rendering of a hollow glass sphere bending light from a vertically striped background](/assets/images/projects/ectert/refracted_spheres.png)
+{% image "projects/ectert/refracted_spheres.png", "3D rendering of a hollow glass sphere bending light from a vertically striped background" %}
 
-![3D rendering of a teapot](/assets/images/projects/cis536caustics/striped_teapot.png)
+{% image "projects/ectert/striped_teapot.png", "3D rendering of a teapot" %}
 
 Model credit [University of Utah](https://graphics.cs.utah.edu/courses/cs6620/fall2013/?prj=5).
 

@@ -1,6 +1,7 @@
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const markdownIt = require("markdown-it");
 const { html5Media } = require('markdown-it-html5-media');
+const Image = require("@11ty/eleventy-img");
 
 // Site directories
 const dir = {
@@ -40,6 +41,33 @@ module.exports = (eleventyConfig) => {
         }
         return content;
     });
+
+    // Image shortcode
+    // Inspired by https://www.aleksandrhovhannisyan.com/blog/eleventy-image-plugin/
+    const imageShortcode = async (
+        src,
+        alt,
+        widths = [400, 800, 1280, 2560],
+        formats = ['webp', 'jpeg'],
+        sizes = '100vw'
+    ) => {
+        const imageMetadata = await Image('src/assets/images/' + src, {
+            widths: [...widths, null],
+            formats: [...formats, null],
+            outputDir: './_site/assets/images',
+            urlPath: '/assets/images',
+        });
+
+        const imageAttributes = {
+            alt,
+            sizes,
+            loading: "lazy",
+            decoding: "async",
+        };
+
+        return Image.generateHTML(imageMetadata, imageAttributes);
+    };
+    eleventyConfig.addShortcode("image", imageShortcode)
 
     // Markdown-it configuration
     let options = {

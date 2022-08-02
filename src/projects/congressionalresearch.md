@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: Congressional Speech Research
-preview_img: /assets/images/congressionalresearch.png
+preview_img: congressionalresearch.png
 date: 2020-08-15
 start_date: 2019
 end_date: 2020
@@ -26,8 +26,8 @@ I'd recommend reading the paper for more information on our methods and conclusi
 
 Here are a few of my favorite charts generated from this (pardon the poor choice of coloring):
 
-![Plot of the average sentence length in speeches over time](/assets/images/projects/congressionalresearch/sentence_length_mean.png)
+{% image "projects/congressionalresearch/sentence_length_mean.png", "Plot of the average sentence length in speeches over time" %}
 
-![Plot of the frequency of words referring to women in speeches over time](/assets/images/projects/congressionalresearch/female_frequency.png)
+{% image "projects/congressionalresearch/female_frequency.png", "Plot of the frequency of words referring to women in speeches over time" %}
 
-![Plot of the frequency of words referring to energy in speeches over time](/assets/images/projects/congressionalresearch/energy_frequency.png)
+{% image "projects/congressionalresearch/energy_frequency.png", "Plot of the frequency of words referring to energy in speeches over time" %}

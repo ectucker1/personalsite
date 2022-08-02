@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: CIS536 Caustics
-preview_img: /assets/images/cis536caustics.png
+preview_img: cis536caustics.png
 date: 2021-04-10
 start_date: 2021
 end_date: 2021
@@ -25,11 +25,11 @@ Here's a video of the photon mapping process (warning, flashing images):
 
 A few more showcases of the results:
 
-![Chart showing the effect of the number of photons and samples on a lensed caustic](/assets/images/projects/cis536caustics/lensedcaustic.png)
+{% image "projects/cis536caustics/lensedcaustic.png", "Chart showing the effect of the number of photons and samples on a lensed caustic" %}
 
-![Chart showing the effect of the number of photons and samples on a reflected caustic](/assets/images/projects/cis536caustics/reflectedcaustic.png)
+{% image "projects/cis536caustics/reflectedcaustic.png", "Chart showing the effect of the number of photons and samples on a reflected caustic" %}
 
-![Image of a more visualy interesting caustic formed by water](/assets/images/projects/cis536caustics/watercaustic.png)
+{% image "projects/cis536caustics/watercaustic.png", "Image of a more visualy interesting caustic formed by water" %}
 
 These results could all certainly be improved by more advanced techniques like a gaussian filters or photon differentials.
 Performance improvements for more photons and samples would also certainly help.

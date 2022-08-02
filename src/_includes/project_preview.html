@@ -1,8 +1,9 @@
 <div class="project pure-g">
     <div class="project-image-col pure-u">
         <div class="project-image-content">
-            <a href="{{url}}">
-                <img class="pure-img project-image-highlight" src="{{ data.preview_img }}" alt="Project poster for {{ data.title }}">
+            <a href="{{url}}" class="pure-img project-image-highlight">
+                {% assign poster_title = "Project poster for " | append: data.title %}
+                {% image data.preview_img, poster_title %}
             </a>
         </div>
     </div>

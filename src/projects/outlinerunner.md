@@ -1,7 +1,7 @@
 ---
 tags: ['project', 'highlight']
 title: Outline Runner
-preview_img: /assets/images/outlinerunner.png
+preview_img: outlinerunner.png
 date: 2021-03-17
 start_date: 2020
 end_date: 2021
@@ -21,8 +21,8 @@ I found this to be a really good workflow for this style of game.
 
 Here are a few screenshots of the game:
 
-![Screenshot showing several enemies firing in a yellow room](/assets/images/projects/outlinerunner/screenshot1.png)
+{% image "projects/outlinerunner/screenshot1.png", "Screenshot showing several enemies firing in a yellow room" %}
 
-![Screenshot showing a red hallway](/assets/images/projects/outlinerunner/screenshot2.png)
+{% image "projects/outlinerunner/screenshot2.png", "Screenshot showing a red hallway" %}
 
-![Screenshot showing a tall purple tower](/assets/images/projects/outlinerunner/screenshot3.png)
+{% image "projects/outlinerunner/screenshot3.png", "Screenshot showing a tall purple tower" %}

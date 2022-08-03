@@ -46,7 +46,7 @@ module.exports = (eleventyConfig) => {
     // Inspired by https://www.aleksandrhovhannisyan.com/blog/eleventy-image-plugin/
     const imageShortcode = async (
         src,
-        alt,
+        alt = 'Header',
         widths = [400, 800, 1280, 2560],
         formats = ['webp', 'jpeg'],
         sizes = '100vw'

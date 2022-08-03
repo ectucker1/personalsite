@@ -1,7 +1,13 @@
 ---
 layout: default
 ---
-<h2 class="section-title">{{ title }}</h2>
+<h2 class="section-title">
+    {{ title }}
+</h2>
+<span class="section-title project-date"><b>{{ start_date }} - {{ end_date }}</b></span>
 <div class="home-top">
+    <div class="project-image-highlight project-page-img">
+        {% image preview_img %}
+    </div>
     {{ content }}
 </div>

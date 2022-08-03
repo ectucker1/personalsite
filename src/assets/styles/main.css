@@ -250,6 +250,13 @@ h2 {
     box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.33);
 }
 
+.project-page-img {
+    max-width: 40%;
+    max-height: 50%;
+    width: auto;
+    height: auto;
+}
+
 .project-title {
     font-size: 1.563rem;
 }

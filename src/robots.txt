@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ectcetera.net/
+
+# Sitemaps
+Sitemap: https://ectcetera.net/sitemap.xml

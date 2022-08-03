@@ -2,6 +2,7 @@ const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const markdownIt = require("markdown-it");
 const { html5Media } = require('markdown-it-html5-media');
 const Image = require("@11ty/eleventy-img");
+const { DateTime } = require('luxon');
 
 // Site directories
 const dir = {
@@ -69,6 +70,10 @@ module.exports = (eleventyConfig) => {
     };
     eleventyConfig.addShortcode("image", imageShortcode)
 
+    eleventyConfig.addShortcode("currentDate", (date = DateTime.now()) => {
+        return date;
+    });
+
     // Markdown-it configuration
     let options = {
         html: true,
@@ -77,6 +82,9 @@ module.exports = (eleventyConfig) => {
     };
     let markdownLibrary = markdownIt(options).use(html5Media);
     eleventyConfig.setLibrary('md', markdownLibrary);
+
+    // robots.txt
+    eleventyConfig.addPassthroughCopy('src/robots.txt');
 
     return {
         dir,

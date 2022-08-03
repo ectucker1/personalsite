@@ -137,6 +137,12 @@ h2 {
     animation: blink 2s steps(5, start) infinite;
 }
 
+@media screen and (max-width: 48em) {
+    .header-caret {
+        display: none;
+    }
+}
+
 @keyframes blink {
     to {
         visibility: hidden;
@@ -153,7 +159,12 @@ h2 {
 
 .nav-container {
     display: block;
-    margin: 0.5rem;
+}
+
+@media screen and (min-width: 48em) {
+    .nav-container {
+        margin: 0.5rem;
+    }
 }
 
 .nav-item {
@@ -163,6 +174,14 @@ h2 {
     text-transform: uppercase;
     text-decoration: none;
     color: #0F172A;
+    width: fit-content;
+    block-size: fit-content;
+}
+
+@media screen and (max-width: 48em) {
+    .nav-item {
+        display: block;
+    }
 }
 
 .nav-item:hover {
@@ -186,8 +205,10 @@ h2 {
     padding: 0.5rem;
 }
 
-.home-top {
-    padding: 3.0rem;
+@media screen and (min-width: 48em) {
+    .home-top {
+        padding: 3.0rem;
+    }
 }
 
 .greeting-text {
@@ -196,8 +217,13 @@ h2 {
 }
 
 .section-title {
-    padding-left: 3.0rem;
     color: #312E81;
+}
+
+@media screen and (min-width: 48em) {
+    .section-title {
+        padding-left: 3.0rem;
+    }
 }
 
 .project {
@@ -238,16 +264,19 @@ h2 {
     }
 }
 
-.project-text-content {
-    padding: 3.0rem;
-}
+@media screen and (min-width: 48em) {
+    .project-text-content {
+        padding: 3.0rem;
+    }
 
-.project-image-content {
-    padding: 1.5rem;
+    .project-image-content {
+        padding: 1.5rem;
+    }
 }
 
 .project-image-highlight {
     box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.33);
+    margin-top: 16px;
 }
 
 .project-page-img {

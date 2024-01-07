@@ -39,6 +39,16 @@ p {
     line-height: 2.0rem;
 }
 
+ul {
+    font-size: 1.25rem;
+    line-height: 2.0rem;
+}
+
+ol {
+    font-size: 1.25rem;
+    line-height: 2.0rem;
+}
+
 a:link:not([class]) {
     color: #2563EB;
 }

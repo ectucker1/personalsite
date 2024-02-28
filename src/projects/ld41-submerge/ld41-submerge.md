@@ -1,7 +1,8 @@
 ---
+permalink: projects/ld41-submerge/
 tags: ['project']
 title: Submerge
-preview_img: ld41.png
+preview_img: ld41-submerge.png
 date: 2018-04-23
 start_date: 2018
 end_date: 2018
@@ -18,6 +19,6 @@ After each round, you're presented with a choice of the next encounter and possi
 
 Here are some screenshots of the game:
 
-{% image "projects/ld41/screenshot1.png", "Game screenshot featuring submarine firing" %}
+{% relImage, "screenshot1.png", "Game screenshot featuring submarine firing" %}
 
-{% image "projects/ld41/screenshot2.png", "Game screenshot featuring encounter and upgrade options displayed as cards" %}
+{% relImage, "screenshot2.png", "Game screenshot featuring encounter and upgrade options displayed as cards" %}

@@ -1,4 +1,5 @@
 ---
+permalink: projects/ectert/
 tags: ['project', 'highlight']
 title: ectert
 preview_img: ectert.png
@@ -18,9 +19,9 @@ It was also my first foray into C++, which has since become one of my main langu
 
 Here's a couple of my favorite renders from ectert:
 
-{% image "projects/ectert/refracted_spheres.png", "3D rendering of a hollow glass sphere bending light from a vertically striped background" %}
+{% relImage, "refracted-spheres.png", "3D rendering of a hollow glass sphere bending light from a vertically striped background" %}
 
-{% image "projects/ectert/striped_teapot.png", "3D rendering of a teapot" %}
+{% relImage, "striped-teapot.png", "3D rendering of a teapot" %}
 
 Model credit [University of Utah](https://graphics.cs.utah.edu/courses/cs6620/fall2013/?prj=5).
 

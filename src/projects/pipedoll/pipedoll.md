@@ -1,4 +1,5 @@
 ---
+permalink: projects/pipedoll/
 tags: ['project', 'highlight']
 title: PipeDoll
 preview_img: pipedoll.png

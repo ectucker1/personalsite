@@ -3,7 +3,7 @@
         <div class="project-image-content">
             <a href="{{url}}" class="pure-img project-image-highlight">
                 {% assign poster_title = "Project poster for " | append: data.title %}
-                {% image data.preview_img poster_title %}
+                {% specImage data.permalink data.preview_img poster_title %}
             </a>
         </div>
     </div>

@@ -1,7 +1,8 @@
 ---
+permalink: projects/ld32-golden-spork/
 tags: ['project']
 title: Quest For the Golden Spork
-preview_img: ld32.png
+preview_img: ld32-golden-spork.png
 date: 2015-04-17
 start_date: 2015
 end_date: 2015
@@ -26,4 +27,4 @@ The physics were slippery, hit detection was sketchy, and everything was slightl
 
 Here's a screenshot of the gameplay:
 
-{% image "projects/ld32/screenshot1.png", "Game screenshot featuring the main character stabbing a living meatball with a spork" %}
+{% relImage, "screenshot1.png", "Game screenshot featuring the main character stabbing a living meatball with a spork" %}

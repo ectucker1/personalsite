@@ -1,4 +1,5 @@
 ---
+permalink: projects/cobblestone/
 tags: ['project', 'highlight']
 title: cobblestone
 preview_img: cobblestone.png
@@ -32,6 +33,6 @@ It's similarly lightweight, and maintains a larger feature set and community tha
 
 Here are some screenshots of cobblestone demos:
 
-{% image "projects/cobblestone/performance_demo.png", "Demo showing thousands of pixel-art rocks falling" %}
+{% relImage, "performance-demo.png", "Demo showing thousands of pixel-art rocks falling" %}
 
-{% image "projects/cobblestone/lighting_demo.png", "Demo showing a dynamic 2D lighting shader" %}
+{% relImage, "lighting-demo.png", "Demo showing a dynamic 2D lighting shader" %}

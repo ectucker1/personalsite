@@ -1,7 +1,8 @@
 ---
+permalink: projects/voxel-ray-tracing/
 tags: ['project', 'highlight']
 title: Voxel Ray Tracing
-preview_img: voxels.png
+preview_img: voxel-ray-tracing.png
 date: 2022-12-15
 start_date: 2022
 end_date: 2022

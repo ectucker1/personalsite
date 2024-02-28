@@ -3,6 +3,7 @@ const markdownIt = require("markdown-it");
 const { html5Media } = require('markdown-it-html5-media');
 const Image = require("@11ty/eleventy-img");
 const { DateTime } = require('luxon');
+const path = require('node:path');
 
 // Site directories
 const dir = {
@@ -16,13 +17,15 @@ const dir = {
 // Template language for the site: https://www.11ty.dev/docs/languages/liquid/
 const TEMPLATE_ENGINE = 'liquid';
 
-module.exports = (eleventyConfig) => {
+module.exports = function(eleventyConfig) {
     // Watch targets
-    eleventyConfig.addWatchTarget(`${dir.input}/assets/styles`);
+    eleventyConfig.addWatchTarget(`${dir.input}/_assets/styles`);
 
     // Static assets
-    eleventyConfig.addPassthroughCopy('src/assets/images');
-    eleventyConfig.addPassthroughCopy('src/assets/fonts');
+    eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': 'assets/fonts' });
+    eleventyConfig.addPassthroughCopy("**/*.gif");
+    eleventyConfig.addPassthroughCopy("**/*.webm");
+    eleventyConfig.addPassthroughCopy("**/*.mp4");
 
     // Render plugin
     eleventyConfig.addPlugin(EleventyRenderPlugin, {
@@ -44,19 +47,28 @@ module.exports = (eleventyConfig) => {
     });
 
     // Image shortcode
-    // Inspired by https://www.aleksandrhovhannisyan.com/blog/eleventy-image-plugin/
-    const imageShortcode = async (
-        src,
+    // Inspired by https://www.aleksandrhovhannisyan.com/blog/eleventy-image-plugin/ and https://gfscott.com/blog/eleventy-img-without-central-image-directory/
+    const fullImage = async function(
+        dir,
+        image,
         alt = 'Header',
         widths = [400, 800, 1280, 2560],
         formats = ['webp', 'jpeg'],
         sizes = '100vw'
-    ) => {
-        const imageMetadata = await Image('src/assets/images/' + src, {
+    ) {
+        if (dir[0] == '/') {
+            dir = dir.substring(1);
+        }
+
+        const imageMetadata = await Image('src/' + dir + image, {
             widths: [...widths, null],
-            formats: [...formats, null],
-            outputDir: './_site/assets/images',
-            urlPath: '/assets/images',
+            formats: [...formats],
+            outputDir: './_site/' + dir,
+            filenameFormat: function (id, src, width, format, options) {
+                const name = path.parse(src).name;
+                return `${name}-${width}.${format}`;
+            },
+            urlPath: '/' + dir
         });
 
         const imageAttributes = {
@@ -68,9 +80,27 @@ module.exports = (eleventyConfig) => {
 
         return Image.generateHTML(imageMetadata, imageAttributes);
     };
-    eleventyConfig.addShortcode("image", imageShortcode)
+    eleventyConfig.addAsyncShortcode("relImage", async function(
+        image,
+        alt = 'Header',
+        widths = [400, 800, 1280, 2560],
+        formats = ['webp', 'jpeg'],
+        sizes = '100vw')
+    {
+        return fullImage(this.page.url, image, alt, widths, formats, sizes);
+    });
+    eleventyConfig.addAsyncShortcode("specImage", async function(
+        dir,
+        image,
+        alt = 'Header',
+        widths = [400, 800, 1280, 2560],
+        formats = ['webp', 'jpeg'],
+        sizes = '100vw')
+    {
+        return fullImage(dir, image, alt, widths, formats, sizes);
+    });
 
-    eleventyConfig.addShortcode("currentDate", (date = DateTime.now()) => {
+    eleventyConfig.addShortcode("currentDate", async function(date = DateTime.now()) {
         return date;
     });
 

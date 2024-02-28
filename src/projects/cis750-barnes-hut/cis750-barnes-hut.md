@@ -1,7 +1,8 @@
 ---
+permalink: projects/cis750-barnes-hut/
 tags: ['project', 'highlight']
 title: CIS750 Barnes-Hut
-preview_img: cis750barneshut.png
+preview_img: cis750-barnes-hut.png
 date: 2022-05-12
 start_date: 2022
 end_date: 2022
@@ -23,12 +24,12 @@ as well as a large portion of the parallelization of the Barnes-Hut algorithm.
 
 Here's a video showing several interesting simulations in our visualizer:
 
-![Video showing a N-body simulation](/assets/images/projects/cis750barneshut/simulations.webm)
+![Video showing a N-body simulation](simulations.webm)
 
 This chart shows the running time of our parallel and serial implementations as the number of bodies increases.
 The Y-axis is logarithmic.
 
-{% image "projects/cis750barneshut/executiontimevsbodies.png", "Graph of execution time vs. number of bodies" %}
+{% relImage, "execution-time-vs-bodies.png", "Graph of execution time vs. number of bodies" %}
 
 There are several remaining optimizations from prior implementations, most notably methods for parallelizing the construction of the octree.
 More work could also be done to verify correct outputs here &mdash; problems with units kept us only comparing to our serial version.

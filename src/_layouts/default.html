@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title | default: name.site_title }}</title>
+  <title>
+    {% if title %}
+        {{ title }} - {{ name.site_title }}
+    {% else %}
+        {{ name.site_title }}
+    {% endif %}
+  </title>
   <link rel="stylesheet" href="/assets/styles/main.css"/>
   <link href="/blog/atom.xml" type="application/atom+xml" rel="alternate" title="Blog Atom Feed" />
 </head>

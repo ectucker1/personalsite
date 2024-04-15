@@ -1,2 +1,3 @@
-Below you can find many of the technical projects I've worked on.
-The listing is pretty exhaustive &mdash; see just the highlights on the [home page](/) or use the filters (coming soon) to find areas you're interested in.
+Below you can find many of the games and other projects of interest I've worked on.
+This list doesn't discriminate by quality or potential interestingness. 
+You may want to start with the highlight reel on the [home page](/).

@@ -3,25 +3,25 @@
 @import "../../../node_modules/normalize.css/normalize.css";
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Figtree';
+    src: local('Figtree Medium'), local('Figtree-Medium'),
+        url('/assets/fonts/figtree/Figtree-Medium.woff2') format('woff2'),
+        url('/assets/fonts/figtree/Figtree-Medium.woff') format('woff'),
+        url('/assets/fonts/figtree/Figtree-Medium.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
-    font-weight: 400;
-    src: local(''),
-        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.woff2') format('woff2'),
-        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.woff') format('woff'),
-        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.ttf') format('truetype'),
-        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.svg#OpenSans') format('svg');
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'Share Tech Mono';
+    font-family: 'Electrolize';
+    src: local('Electrolize'), local('Electrolize-Regular'),
+        url('/assets/fonts/electrolize/Electrolize-Regular.woff2') format('woff2'),
+        url('/assets/fonts/electrolize/Electrolize-Regular.woff') format('woff'),
+        url('/assets/fonts/electrolize/Electrolize-Regular.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
-    font-weight: 400;
-    src: local(''),
-        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff2') format('woff2'),
-        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff') format('woff'),
-        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.ttf') format('truetype'),
-        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.svg#ShareTechMono') format('svg');
+    font-display: swap;
 }
 
 /* Reused constants */
@@ -36,6 +36,8 @@
 	--link-visited: #6736a1;
 	--link-hover: #7da7e9;
 	font-size: 18px;
+	--title-font: "Electrolize", sans-serif;
+	--text-font: "Figtree", sans-serif;
 }
 
 /* General page setup */
@@ -47,7 +49,7 @@ body {
 	max-width: 1300px;
 	color: var(--text-color);
 	line-height: 1.8;
-	font-family: "Open Sans", sans-serif;
+	font-family: var(--text-font);
 }
 .page {
 	background-color: var(--page-background);
@@ -90,10 +92,12 @@ a:hover:not([class]) {
 h2 {
     font-size: 1.953rem;
 	color: var(--accent-dark);
+	font-family: var(--title-font);
 }
 h3 {
     font-size: 1.5rem;
 	color: var(--accent-dark);
+	font-family: var(--title-font);
 }
 a h2:hover {
 	color: var(--accent-general);
@@ -139,13 +143,13 @@ a h3:hover {
 	border-bottom: 2px solid var(--accent-general);
 }
 .header-name {
-	font-family: "Share Tech Mono", monospace;
+	font-family: var(--title-font);
     font-size: 3.052rem;
 	margin-bottom: 5px;
 	color: var(--accent-dark);
 }
 .header-title {
-	font-family: "Share Tech Mono", monospace;
+	font-family: var(--title-font);
     font-size: 2.441rem;
 	margin-top: 0px;
 	margin-bottom: 5px;

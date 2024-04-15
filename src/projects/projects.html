@@ -1,0 +1,13 @@
+---
+layout: default
+permalink: /projects/
+---
+<h2 class="section-title-break">Projects</h2>
+<div class="section-generic">
+    {% renderFile './src/_includes/projects_content.md' %}
+</div>
+<div>
+    {%- for project in collections.project reversed -%}
+        {% renderFile './src/_includes/project_preview.html', project %}
+    {%- endfor -%}
+</div>

@@ -1,4 +1,4 @@
-I'm {{ full_name }}.
+I'm {{ first_name }}.
 I'm a professional software developer and general purpose wanderer in stuff I find cool, computer related or otherwise.
 Maybe you'll find some of it cool too!
 

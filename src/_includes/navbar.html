@@ -1,14 +1,16 @@
-<header class="header-container">
-    <div class="header-line">
-        <h1 class="header-name">
-            <a href="/" class="clear">{{ name.formal_name }}</a>
-        </h1>
-        <span class="header-caret">|</span>
-        <h1 class="header-title">Digital Tinkerer</h1>
+<header class="section-header">
+    <div class="header-title-block">
+        <a href="/" class="clear-link">
+            <h1 class="header-name">
+                {{ name.formal_name }}
+            </h1>
+        </a>
+        <h1 class="header-title">&The Rest</h1>
     </div>
-    <nav class="nav-container" role="navigation" aria-label="main navigation">
-        <a class="nav-item {% if permalink == "/" %}nav-item-active{% endif %}" href="/">Home</a>
-        <a class="nav-item {% if permalink == "/projects/" %}nav-item-active{% endif %}" href="/projects">Projects</a>
-        <a class="nav-item {% if permalink == "/contact/" %}nav-item-active{% endif %}" href="/contact">Contact</a>
-    </nav>
+    <nav class="nav-block" role="navigation" aria-label="main navigation">
+        <a class="nav-item clear-link {% if permalink == "/" %}nav-item-active{% endif %}" href="/">Home</a>
+        <a class="nav-item clear-link {% if permalink == "/projects/" %}nav-item-active{% endif %}" href="/projects">Projects</a>
+        <a class="nav-item clear-link {% if permalink == "/blog/" %}nav-item-active{% endif %}" href="/blog">Blog</a>
+        <a class="nav-item clear-link {% if permalink == "/contact/" %}nav-item-active{% endif %}" href="/contact">Contact</a>
+    </nav> 
 </header>

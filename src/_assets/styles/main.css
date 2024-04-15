@@ -1,15 +1,16 @@
 @charset "UTF-8";
-@import "../../../node_modules/purecss/build/pure.css";
+
+@import "../../../node_modules/normalize.css/normalize.css";
 
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     src: local(''),
-        url('/assets/fonts/opensans/open-sans-v29-latin-regular.woff2') format('woff2'),
-        url('/assets/fonts/opensans/open-sans-v29-latin-regular.woff') format('woff'),
-        url('/assets/fonts/opensans/open-sans-v29-latin-regular.ttf') format('truetype'),
-        url('/assets/fonts/opensans/open-sans-v29-latin-regular.svg#OpenSans') format('svg');
+        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.woff2') format('woff2'),
+        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.woff') format('woff'),
+        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.ttf') format('truetype'),
+        url('/_assets/fonts/opensans/open-sans-v29-latin-regular.svg#OpenSans') format('svg');
 }
 
 @font-face {
@@ -17,289 +18,230 @@
     font-style: normal;
     font-weight: 400;
     src: local(''),
-        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff2') format('woff2'),
-        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff') format('woff'),
-        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.ttf') format('truetype'),
-        url('/assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.svg#ShareTechMono') format('svg');
+        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff2') format('woff2'),
+        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.woff') format('woff'),
+        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.ttf') format('truetype'),
+        url('/_assets/fonts/sharetechmono/share-tech-mono-v15-latin-regular.svg#ShareTechMono') format('svg');
 }
 
+/* Reused constants */
+:root {
+	--section-margin: 20px;
+	--page-background: #fff9fc;
+	--text-color: #444;
+	--accent-background: #bd89a4;
+	--accent-general: #91486E;
+	--accent-dark: #593246;
+	--link-unvisited: #3078d4;
+	--link-visited: #6736a1;
+	--link-hover: #7da7e9;
+	font-size: 18px;
+}
+
+/* General page setup */
+html {
+	background-color: var(--accent-background);
+}
 body {
-    background-color: #E0E7FF;
-    color: #0F172A;
+	margin: 40px auto;
+	max-width: 1300px;
+	color: var(--text-color);
+	line-height: 1.8;
+	font-family: "Open Sans", sans-serif;
+}
+.page {
+	background-color: var(--page-background);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 2px solid var(--accent-dark);
 }
 
-/* Needed for fonts to work with Pure grids. */
-html, button, input, select, textarea, footer, span, a,
-.pure-g [class *= "pure-u"] {
-    font-family: "Open Sans", sans-serif;
+/* Standard prose elements */
+p, blockquote  {
+	text-align: justify;
+	font-size: 1rem;
 }
-
-p {
-    font-size: 1.25rem;
-    line-height: 2.0rem;
-}
-
 ul {
-    font-size: 1.25rem;
-    line-height: 2.0rem;
+    font-size: 1rem;
+	margin-top: 0px;
 }
-
 ol {
-    font-size: 1.25rem;
-    line-height: 2.0rem;
+    font-size: 1rem;
 }
-
+li {
+    font-size: 1rem;
+}
+picture, img, video {
+    max-width: 100%;
+  	height: auto;
+}
+img {
+	border: 2px solid var(--accent-general);
+}
 a:link:not([class]) {
-    color: #2563EB;
+    color: var(--link-unvisited);
 }
-
 a:visited:not([class]) {
-    color: #3730A3;
+    color: var(--link-visited);
 }
-
 a:hover:not([class]) {
-    color: #60A5FA;
+    color: var(--link-hover);
 }
-
-/* selected link */
-a:active:not([class]) {
-    color: #2563EB;
-}
-
-img:not([class]) {
-    display: block;
-    max-width: 100%;
-    max-height: 50vh;
-    width: auto;
-    height: auto;
-    margin-left:auto;
-    margin-right:auto;
-    border: 2px solid black;
-}
-
-.project-image-highlight picture img {
-    display: block;
-    max-width: 100%;
-    max-height: inherit;
-    width: auto;
-    height: auto;
-    margin-left: 0px;
-    margin-right: 0px;
-    border: none;
-}
-
-video.html5-video-player {
-    display: block;
-    max-width: 100%;
-    max-height: 50vh;
-    width: auto;
-    height: auto;
-    margin-left:auto;
-    margin-right:auto;
-    border: 2px solid black;
-}
-
-.clear {
-    text-decoration: none;
-    color: inherit;
-}
-
 h2 {
     font-size: 1.953rem;
+	color: var(--accent-dark);
+}
+h3 {
+    font-size: 1.5rem;
+	color: var(--accent-dark);
+}
+a h2:hover {
+	color: var(--accent-general);
+}
+a h3:hover {
+	color: var(--accent-general);
 }
 
-.root-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 1400px;
-    margin: auto;
-    padding: 2rem;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.33);
-    background-color: #F8FAFC;
+.tagged-header {
+	margin-bottom: 0px;
+	line-height: 1.5em;
+}
+.tag-date {
+	display: block;
+	margin-top: 0px;
+	padding-bottom: 5px;
+	color: var(--accent-dark);
 }
 
-.header-container {
-    display: block;
-    width: 100%;
-    margin: 1.25rem 0;
+.clear-link {
+	text-decoration: none;
+	color: inherit;
 }
 
-.header-line {
-    border-bottom: 2px solid black;
-    padding: 0.5rem;
+/* Section layout */
+
+.section-generic {
+	margin: var(--section-margin);
 }
 
+.section-header {
+	margin-left: var(--section-margin);
+	margin-right: var(--section-margin);
+	margin-bottom: 0px;
+	margin-top: 0px;
+	line-height: normal;
+}
+
+/* Header Section */
+.header-title-block {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-bottom: 2px solid var(--accent-general);
+}
 .header-name {
-    font-family: "Share Tech Mono", monospace;
+	font-family: "Share Tech Mono", monospace;
     font-size: 3.052rem;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #312E81;
+	margin-bottom: 5px;
+	color: var(--accent-dark);
 }
-
-.header-caret {
-    display: inline;
-    font-size: 3.052rem;
-    background-color: #0F172A;
-    margin: 0 1.0rem;
-    animation: blink 2s steps(5, start) infinite;
-}
-
-@media screen and (max-width: 48em) {
-    .header-caret {
-        display: none;
-    }
-}
-
-@keyframes blink {
-    to {
-        visibility: hidden;
-    }
-}
-
 .header-title {
-    font-family: "Share Tech Mono", monospace;
+	font-family: "Share Tech Mono", monospace;
     font-size: 2.441rem;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+	margin-top: 0px;
+	margin-bottom: 5px;
 }
 
-.nav-container {
-    display: block;
+/* Nav Section */
+.nav-block {
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
-
-@media screen and (min-width: 48em) {
-    .nav-container {
-        margin: 0.5rem;
-    }
-}
-
 .nav-item {
-    font-size: 1.25rem;
-    margin: 0.5rem;
-    padding-top: 1.0rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #0F172A;
-    width: fit-content;
-    block-size: fit-content;
+	display: table;
+	margin-bottom: 20px;
+	font-size: 1.25rem;
 }
-
-@media screen and (max-width: 48em) {
-    .nav-item {
-        display: block;
-    }
+.nav-block a + a {
+	margin-top: 20px;
 }
-
-.nav-item:hover {
-    color: #94A3B8;
+@media (min-width: 800px) {
+	.nav-item {
+		display: inline-block;
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+	.nav-block a + a {
+		margin-left: 15px;
+		margin-top: 0px;
+	}
 }
-
-.nav-item:active {
-    color: #64748B;
-}
-
-
 .nav-item-active {
-    border-bottom: 4px solid #64748B;
+	border-bottom: 2px solid var(--accent-general);
+}
+.nav-item:hover {
+	color: var(--accent-general);
 }
 
-.footer-container {
-    display: block;
-    width: 100%;
-    margin: 1.25rem 0;
-    border-top: 2px solid black;
-    padding: 0.5rem;
+/* Footer Section */
+.section-footer {
+	margin: var(--section-margin);
+	border-top: 2px solid var(--accent-general);
 }
 
-@media screen and (min-width: 48em) {
-    .home-top {
-        padding: 3.0rem;
-    }
+/* Title extending across the page */
+.section-title-break {
+	margin: var(--section-margin);
+	border-bottom: 2px solid var(--accent-general);
 }
 
-.greeting-text {
-    font-size: 1.953rem;
-    color: #312E81;
+/* Poster Project Preview w/ Alternating Ordering */
+.section-poster-project {
+	display: grid;
+	width: 100%;
 }
-
-.section-title {
-    color: #312E81;
+.poster-project-text-column {
+	margin: var(--section-margin);
 }
-
-@media screen and (min-width: 48em) {
-    .section-title {
-        padding-left: 3.0rem;
-    }
+.poster-project-image-column {
+	margin-left: var(--section-margin);
+	margin-right: var(--section-margin);
+	a, picture {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
 }
-
-.project {
-    display: flex;
-}
-
-.project-text-col {
-    width: 100%;
-}
-
-.project-image-col {
-    width: 100%;
-}
-
-@media screen and (min-width: 48em) {
-    .project-text-col {
-        width: 60%;
-    }
-
-    .project-image-col {
-        width: 40%;
-    }
-
-    .project:nth-of-type(odd) .project-text-col {
+@media (min-width: 800px) {
+	.section-poster-project {
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+	}
+	.section-poster-project:nth-of-type(odd) {
+		grid-template-columns: 4fr 3fr;
+	}
+	.section-poster-project:nth-of-type(odd) .poster-project-text-column {
         order: 1;
+		margin-right: calc(var(--section-margin) / 2);
     }
-
-    .project:nth-of-type(odd) .project-image-col {
+    .section-poster-project:nth-of-type(odd) .poster-project-image-column {
         order: 2;
+		margin-left: calc(var(--section-margin) / 2);
     }
-
-    .project:nth-of-type(even) .project-text-col {
-        order: 2;
-    }
-
-    .project:nth-of-type(even) .project-image-col {
+	.section-poster-project:nth-of-type(even) {
+		grid-template-columns: 3fr 4fr;
+	}
+    .section-poster-project:nth-of-type(even) .poster-project-image-column {
         order: 1;
+		margin-right: calc(var(--section-margin) / 2);
+    }
+    .section-poster-project:nth-of-type(even) .poster-project-text-column {
+        order: 2;
+		margin-left: calc(var(--section-margin) / 2);
     }
 }
-
-@media screen and (min-width: 48em) {
-    .project-text-content {
-        padding: 3.0rem;
-    }
-
-    .project-image-content {
-        padding: 1.5rem;
-    }
-}
-
-.project-image-highlight {
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.33);
-    margin-top: 16px;
-}
-
-.project-page-img {
-    max-width: 40%;
-    max-height: 50%;
-    width: auto;
-    height: auto;
-}
-
-.project-title {
-    font-size: 1.563rem;
-}
-
-.project-date {
-    color: #312E81;
+.poster-project-header-block {
+	border-bottom: 2px solid var(--accent-general);
+	h3 {
+		margin-top: 0;
+	}
 }

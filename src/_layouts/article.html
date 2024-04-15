@@ -3,9 +3,8 @@ layout: default
 ---
 <div class="section-title-break">
     <h2 class="tagged-header">{{ title }}</h2>
-    <span class="tag-date">{{ start_date }} - {{ end_date }}</span>
+    <span class="tag-date">{{ date | postDate }}</span>
 </div>
 <div class="section-generic">
-    {% relImage preview_img %}
     {{ content }}
 </div>

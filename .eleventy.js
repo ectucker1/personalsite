@@ -23,9 +23,9 @@ module.exports = function(eleventyConfig) {
 
     // Static assets
     eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': 'assets/fonts' });
-    eleventyConfig.addPassthroughCopy("**/*.gif");
-    eleventyConfig.addPassthroughCopy("**/*.webm");
-    eleventyConfig.addPassthroughCopy("**/*.mp4");
+    eleventyConfig.addPassthroughCopy("src/**/*.gif");
+    eleventyConfig.addPassthroughCopy("src/**/*.webm");
+    eleventyConfig.addPassthroughCopy("src/**/*.mp4");
 
     // Render plugin
     eleventyConfig.addPlugin(EleventyRenderPlugin, {
@@ -100,8 +100,14 @@ module.exports = function(eleventyConfig) {
         return fullImage(dir, image, alt, widths, formats, sizes);
     });
 
-    eleventyConfig.addShortcode("currentDate", async function(date = DateTime.now()) {
+    eleventyConfig.addShortcode("currentDateSitemap", async function(date = DateTime.now()) {
         return date;
+    });
+    eleventyConfig.addFilter('postDate', async function(date) {
+        let day = date.toLocaleString('default', { day: '2-digit' });
+        let month = date.toLocaleString('default', { month: 'long' });
+        let year = date.toLocaleString('default', { year: 'numeric' });
+        return day + ' ' + month + ', ' + year;
     });
 
     // Markdown-it configuration

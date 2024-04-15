@@ -1,0 +1,21 @@
+---
+permalink: /
+layout: default
+---
+<h2 class="section-title-break">Welcome!</h2>
+<div class="section-generic">
+    <p>Hello!</p>
+    {% renderFile './src/_includes/home_content.md', name %}
+</div>
+<h2 class="section-title-break">Recent Posts</h2>
+<div>
+  {%- for article in collections.article reversed limit:1 -%}
+    {% renderFile './src/_includes/article_preview.html', article %}
+  {%- endfor -%}
+</div>
+<h2 class="section-title-break">Featured Projects</h2>
+<div>
+    {%- for project in collections.highlight reversed -%}
+        {% renderFile './src/_includes/project_preview.html', project %}
+    {%- endfor -%}
+</div>

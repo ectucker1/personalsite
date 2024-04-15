@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="/assets/styles/main.css"/>
 </head>
 <body>
-  <div class="root-container">
-    {% include 'navbar.html' %}
+    <div class="page">
+        {% include 'navbar.html' %}
 
-    <main class="p-6 grow w-full mx-auto">
-      {{ content }}
-    </main>
+        <main>
+            {{ content }}
+        </main>
 
-    {% include 'footer.html' %}
-  </div>
+        {% include 'footer.html' %}
+    </div>
 </body>
 </html>

@@ -1,0 +1,13 @@
+---
+permalink: /blog/
+layout: default
+---
+<h2 class="section-title-break">Blog</h2>
+<div class="section-generic">
+  {% renderFile './src/_includes/blog_intro.md', name %}
+</div>
+<div>
+  {%- for article in collections.article reversed -%}
+    {% renderFile './src/_includes/article_preview.html', article %}
+  {%- endfor -%}
+</div>

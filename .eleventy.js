@@ -4,6 +4,7 @@ const { html5Media } = require('markdown-it-html5-media');
 const Image = require("@11ty/eleventy-img");
 const { DateTime } = require('luxon');
 const path = require('node:path');
+const rssPlugin = require('@11ty/eleventy-plugin-rss');
 
 // Site directories
 const dir = {
@@ -32,6 +33,9 @@ module.exports = function(eleventyConfig) {
         tagName: 'renderTemplate',
         tagNameFile: 'renderFile',
     });
+
+    // RSS Plugin
+    eleventyConfig.addPlugin(rssPlugin);
 
     // Custom Markdown syntax - '---endpreview' to seperate article preview
     eleventyConfig.addFilter('markdownPreview', function(value) {
@@ -127,6 +131,6 @@ module.exports = function(eleventyConfig) {
         dataTemplateEngine: TEMPLATE_ENGINE,
         markdownTemplateEngine: TEMPLATE_ENGINE,
         htmlTemplateEngine: TEMPLATE_ENGINE,
-        templateFormats: ['html', 'md', TEMPLATE_ENGINE],
+        templateFormats: ['html', 'md', 'njk', TEMPLATE_ENGINE],
     };
 };

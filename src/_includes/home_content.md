@@ -12,7 +12,7 @@ I'm based out of Kansas.
 I'm 23 years old.
 Oh, and I'm a proudly-visible trans woman!
 
-If any of that sounds like something you'd like to chat about, feel free to reach out on [Mastodon](https://mastodon.gamedev.place/@ectcetera)!
+If any of that sounds like something you'd like to chat about, feel free to reach out on {% relMe "Mastodon", "https://mastodon.gamedev.place/@ectcetera" %}!
 You can also follow the [Atom Feed](/blog/atom.xml) of this site's blog.
 
 Below you can find some of my favorite projects I've worked on.

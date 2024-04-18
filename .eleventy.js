@@ -114,6 +114,10 @@ module.exports = function(eleventyConfig) {
         return day + ' ' + month + ', ' + year;
     });
 
+    eleventyConfig.addShortcode('relMe', async function(text, url) {
+        return `<a rel="me" href="${url}">${text}</a>`;
+    });
+
     // Markdown-it configuration
     let options = {
         html: true,

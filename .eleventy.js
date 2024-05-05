@@ -122,15 +122,15 @@ module.exports = function(eleventyConfig) {
         return date;
     });
     eleventyConfig.addFilter('postDate', async function(date) {
-        let day = date.toLocaleString('default', { day: '2-digit' });
-        let month = date.toLocaleString('default', { month: 'long' });
-        let year = date.toLocaleString('default', { year: 'numeric' });
+        let day = date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
+        let month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+        let year = date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
         return day + ' ' + month + ', ' + year;
     });
     eleventyConfig.addFilter('permalinkDate', async function(date) {
-        let day = date.toLocaleString('default', { day: '2-digit' });
-        let month = date.toLocaleString('default', { month: '2-digit' });
-        let year = date.toLocaleString('default', { year: 'numeric' });
+        let day = date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
+        let month = date.toLocaleString('default', { month: '2-digit', timeZone: 'UTC' });
+        let year = date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
         return `${year}/${month}/${day}`;
     });
 

@@ -28,6 +28,9 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/**/*.webm");
     eleventyConfig.addPassthroughCopy("src/**/*.mp4");
 
+    // robots.txt
+    eleventyConfig.addPassthroughCopy('src/robots.txt');
+
     // Render plugin
     eleventyConfig.addPlugin(EleventyRenderPlugin, {
         tagName: 'renderTemplate',
@@ -36,6 +39,17 @@ module.exports = function(eleventyConfig) {
 
     // RSS Plugin
     eleventyConfig.addPlugin(rssPlugin);
+
+    // Markdown-it configuration
+    const options = {
+        html: true,
+        breaks: false,
+        linkify: true
+    };
+    const markdownLibrary = markdownIt(options)
+        .disable('code')
+        .use(html5Media);
+    eleventyConfig.setLibrary('md', markdownLibrary);
 
     // Custom Markdown syntax - '---endpreview' to seperate article preview
     eleventyConfig.addFilter('markdownPreview', function(value) {
@@ -104,7 +118,7 @@ module.exports = function(eleventyConfig) {
         return fullImage(dir, image, alt, widths, formats, sizes);
     });
 
-    eleventyConfig.addShortcode("currentDateSitemap", async function(date = DateTime.now()) {
+    eleventyConfig.addAsyncShortcode("currentDateSitemap", async function(date = DateTime.now()) {
         return date;
     });
     eleventyConfig.addFilter('postDate', async function(date) {
@@ -113,22 +127,30 @@ module.exports = function(eleventyConfig) {
         let year = date.toLocaleString('default', { year: 'numeric' });
         return day + ' ' + month + ', ' + year;
     });
+    eleventyConfig.addFilter('permalinkDate', async function(date) {
+        let day = date.toLocaleString('default', { day: '2-digit' });
+        let month = date.toLocaleString('default', { month: '2-digit' });
+        let year = date.toLocaleString('default', { year: 'numeric' });
+        return `${year}/${month}/${day}`;
+    });
 
-    eleventyConfig.addShortcode('relMe', async function(text, url) {
+    eleventyConfig.addAsyncShortcode('relMe', async function(text, url) {
         return `<a rel="me" href="${url}">${text}</a>`;
     });
 
-    // Markdown-it configuration
-    let options = {
-        html: true,
-        breaks: false,
-        linkify: true
-    };
-    let markdownLibrary = markdownIt(options).use(html5Media);
-    eleventyConfig.setLibrary('md', markdownLibrary);
-
-    // robots.txt
-    eleventyConfig.addPassthroughCopy('src/robots.txt');
+    // Based on https://www.aleksandrhovhannisyan.com/blog/custom-markdown-components-in-11ty/
+    eleventyConfig.addPairedAsyncShortcode('asidenote', async function(content) {
+        const htmlContent = markdownLibrary.render(content.trim());
+        return `<aside role="note">${htmlContent}</aside>`;
+    });
+    eleventyConfig.addPairedAsyncShortcode('asiderow', async function(content) {
+        const htmlContent = markdownLibrary.render(content.trim());
+        return `<div class="asiderow">${htmlContent}</div>`;
+    });
+    eleventyConfig.addPairedAsyncShortcode('asiderowcontent', async function(content) {
+        const htmlContent = markdownLibrary.render(content.trim());
+        return `<div class="asiderowcontent">${htmlContent}</div>`;
+    });
 
     return {
         dir,

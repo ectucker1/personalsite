@@ -28,6 +28,7 @@
 :root {
 	--section-margin: 20px;
 	--page-background: #fff9fc;
+	--block-background: #eae0e4;
 	--text-color: #444;
 	--accent-background: #bd89a4;
 	--accent-general: #91486E;
@@ -60,7 +61,6 @@ body {
 
 /* Standard prose elements */
 p, blockquote  {
-	text-align: justify;
 	font-size: 1rem;
 }
 ul {
@@ -104,6 +104,40 @@ a h2:hover {
 }
 a h3:hover {
 	color: var(--accent-general);
+}
+
+.asiderowcontent {
+	margin: 0;
+}
+.asiderowcontent :first-child {
+	margin-top: 0;
+}
+.asiderowcontent :last-child {
+	margin-bottom: 0;
+}
+@media (min-width: 800px) {
+	.asiderow {
+		display: flex;
+		align-items:flex-start;
+		align-content:flex-start;
+		gap: 0.75rem;
+	}
+	.asiderow > .asiderowcontent {
+		width: 65%;
+	}
+	.asiderow > aside {
+		width: 35%;
+	}
+}
+
+aside {
+	border-left: 2px solid var(--accent-general);
+	background: var(--block-background);
+	font-size: 0.9rem;
+}
+aside > p {
+	margin-left: 0.75rem;
+	font-size: 0.9rem;
 }
 
 .tagged-header {

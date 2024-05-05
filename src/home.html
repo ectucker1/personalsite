@@ -8,7 +8,8 @@ layout: default
 </div>
 <h2 class="section-title-break">Recent Posts</h2>
 <div>
-  {%- for article in collections.article reversed limit:1 -%}
+  {% assign recent_posts = collections.article | reverse %}
+  {%- for article in recent_posts limit:2 -%}
     {% renderFile './src/_includes/article_preview.html', article %}
   {%- endfor -%}
 </div>

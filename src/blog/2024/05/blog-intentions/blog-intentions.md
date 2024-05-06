@@ -36,7 +36,7 @@ I know plenty of people who have received various forms of harassment here.
     {% asidenote %}
 It wasn't quite total blackout from me.
 
-I had a Minecraft YouTube channel from 2013-2016 that I'm slightly too embarrsed of to link to here.
+I had a Minecraft YouTube channel from 2013-2016 that I'm slightly too embarrassed of to link to here.
 And also an anonymous Reddit account where I posted some decent memes and occasionally corrected people who just needed to read the article they were talking about, dammit.
     {% endasidenote %}
 {% endasiderow %}

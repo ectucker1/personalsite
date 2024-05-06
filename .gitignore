@@ -135,3 +135,6 @@ _site/
 # WebStorm files
 .idea/
 *.iml
+
+# Font Script Output
+src/_assets/fonts/ectcetera-icons/

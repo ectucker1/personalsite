@@ -7,5 +7,5 @@ The site isn't yet finished, but is served nonetheless at [ectcetera.net](https:
 
 ## License
 
-Site code (server, scripts, layouts, and styles) licensed GNU GPLv3 (see LICENSE.txt).
+Site code (server, scripts, layouts, and styles) licensed GNU AGPLv3 (see LICENSE.txt).
 Site content (text, images, videos, etc.) licensed CC-BY-SA-4.0 (see LICENSE-CONTENT.txt).

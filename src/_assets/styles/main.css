@@ -24,6 +24,15 @@
     font-display: swap;
 }
 
+@font-face {
+	font-family: 'ectcetera-icons';
+	src: url('/assets/fonts/ectcetera-icons/ectcetera-icons.woff2') format('woff2'),
+		url('/assets/fonts/ectcetera-icons/ectcetera-icons.woff') format('woff'),
+		url('/assets/fonts/ectcetera-icons/ectcetera-icons.ttf') format('truetype')
+		url('/assets/fonts/ectcetera-icons/ectcetera-icons.svg') format('svg');
+	font-display: swap;
+}
+
 /* Reused constants */
 :root {
 	--section-margin: 20px;
@@ -88,6 +97,22 @@ a:visited:not([class]) {
 }
 a:hover:not([class]) {
     color: var(--link-hover);
+}
+a[href]:not(:where(
+  [href^="#"],
+  [href^="/"]:not([href^="//"]),
+  [href*="//ectcetera.net"]
+))::after {
+	content: '\ea01';
+	font-family: 'ectcetera-icons' !important;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+	position: relative;
+	margin-left: 0.3em;
+	bottom: 0.05em;
+	font-size: 0.7em;
 }
 h2 {
     font-size: 1.953rem;

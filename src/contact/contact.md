@@ -1,3 +1,8 @@
+---
+permalink: /contact/
+layout: justapage
+title: Contact
+---
 I've left a few accounts around the web.
 Here I gather and bind them together through the ritual of hyperlinking.
 

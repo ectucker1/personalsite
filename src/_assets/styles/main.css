@@ -42,7 +42,7 @@
 	--accent-background: #bd89a4;
 	--accent-general: #91486E;
 	--accent-dark: #593246;
-	--link-unvisited: #3078d4;
+	--link-unvisited: #2564B6;
 	--link-visited: #6736a1;
 	--link-hover: #7da7e9;
 	font-size: 18px;
@@ -88,6 +88,11 @@ picture, img, video {
 }
 img {
 	border: 2px solid var(--accent-general);
+}
+img:not([class]) {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 a:link:not([class]) {
     color: var(--link-unvisited);

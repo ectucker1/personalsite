@@ -8,7 +8,7 @@ While I do plenty of that professionally, this site mostly showcases my personal
 I've been making games for almost 10 years now, starting with my [first Ludum Dare entry](/projects/ld32-golden-spork/) in 2015 (they got better; I swear).
 I always have a side project or two going, and I'll be posting about them on [my blog](/blog).
 
-Right now my main project is [Stack Street Sorcery](/projects/stack-street-sorcery/), a real-time online multiplayer card game where timing is everything.
+Right now my main project is [Random Bullshit Go](/projects/random-bullshit-go/), a real-time online multiplayer card game where timing is everything.
 
 Outside of the computer, I dabble in electronic music, Magic the Gathering, and obscure rules-light tabletop RPGs.
 I'm based out of Kansas.

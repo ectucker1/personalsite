@@ -83,7 +83,7 @@ I'm selling Visa a little short here; his book _[Introspect](https://visakanv.gu
 I'm also inspired by all the work done on the [IndieWeb](https://indieweb.org/), especially the idea of owning my own data.
 I somewhat-similarly resolved to start posting what I was up to to Twitter around September of 2022, right before a good chunk of the site blew up.
 The coolest people I followed mostly moved to Mastodon.
-I [moved there too](https://mastodon.gamedev.place/@ectcetera) and post semi-regularly now (read: a couple times a week).
+I [moved there too](https://kind.social/@ectcetera) and post semi-regularly now (read: a couple times a week).
 I really like Mastodon, but I want a home for more long-form writing and pages I can link to when talking about my projects.
 
 Part of me feels like I need a full [IndieMark](https://indieweb.org/IndieMark) before I start posting.

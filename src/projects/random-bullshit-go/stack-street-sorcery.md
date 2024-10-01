@@ -75,4 +75,4 @@ The game is being developed in my spare time using the Godot game engine.
 It was on the backburner for a couple years during college, but is my main creative focus now.
 Once it's ready, it will be released for free on [itch.io](https://ect.itch.io/).
 
-For updates, you can follow me on {% relMe "Mastodon", "https://mastodon.gamedev.place/@ectcetera" %}, {% relMe "itch.io", "https://ect.itch.io/" %}, or my blog's [Atom Feed](/blog/atom.xml).
+For updates, you can follow me on {% relMe "Mastodon", "https://kind.social/@ectcetera" %}, {% relMe "itch.io", "https://ect.itch.io/" %}, or my blog's [Atom Feed](/blog/atom.xml).

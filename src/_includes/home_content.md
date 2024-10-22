@@ -10,7 +10,7 @@ I always have a side project or two going, and I'll be posting about them on [my
 
 Right now my main project is [Random Bullshit Go](/projects/random-bullshit-go/), a real-time online multiplayer card game where timing is everything.
 
-Outside of the computer, I dabble in electronic music, Magic the Gathering, and obscure rules-light tabletop RPGs.
+Outside of the computer, I dabble in [electronic music](/music/), Magic the Gathering, and obscure rules-light tabletop RPGs.
 I'm based out of Kansas.
 I'm 23 years old.
 Oh, and I'm a proudly-visible trans woman!

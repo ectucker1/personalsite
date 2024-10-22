@@ -27,6 +27,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/**/*.gif");
     eleventyConfig.addPassthroughCopy("src/**/*.webm");
     eleventyConfig.addPassthroughCopy("src/**/*.mp4");
+    eleventyConfig.addPassthroughCopy("src/**/*.mp3");
 
     // robots.txt
     eleventyConfig.addPassthroughCopy('src/robots.txt');
@@ -150,6 +151,10 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPairedAsyncShortcode('asiderowcontent', async function(content) {
         const htmlContent = markdownLibrary.render(content.trim());
         return `<div class="asiderowcontent">${htmlContent}</div>`;
+    });
+
+    eleventyConfig.addAsyncShortcode("audioPlayer", async function(filename) {
+        return `<audio src="${filename}" preload="metadata" controls></audio>`;
     });
 
     return {

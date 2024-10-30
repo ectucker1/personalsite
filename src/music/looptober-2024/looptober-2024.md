@@ -20,6 +20,18 @@ Or browse #Looptober on your Fediverse instance of choice.
 
 My favorite tracks are marked with a *.
 
+#### * Day 29
+
+I think this would be classified as IDM? It's getting there through sheer modulation making the sounds unrecognizable over time.
+
+{% audioPlayer "looptober-2024-29.mp3" %}
+
+#### * Day 23
+
+Solo played on the "Future Split" patch for the excellent open-source [Surge XT](https://surge-synthesizer.github.io/) synthesizer VST.
+
+{% audioPlayer "looptober-2024-23.mp3" %}
+
 #### * Day 17
 
 A particularly odd creation made by recording myself tapping on a metal water bottle and adding a phaser effect.

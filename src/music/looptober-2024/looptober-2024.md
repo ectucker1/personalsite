@@ -20,9 +20,17 @@ Or browse #Looptober on your Fediverse instance of choice.
 
 My favorite tracks are marked with a *.
 
+#### Day 30
+
+Love the filter knob.
+It's a good knob.
+
+{% audioPlayer "looptober-2024-30.mp3" %}
+
 #### * Day 29
 
-I think this would be classified as IDM? It's getting there through sheer modulation making the sounds unrecognizable over time.
+I think this would be classified as IDM?
+It's getting there through sheer modulation making the sounds unrecognizable over time.
 
 {% audioPlayer "looptober-2024-29.mp3" %}
 

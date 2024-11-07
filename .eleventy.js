@@ -1,10 +1,11 @@
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const markdownIt = require("markdown-it");
-const { html5Media } = require('markdown-it-html5-media');
-const Image = require("@11ty/eleventy-img");
-const { DateTime } = require('luxon');
-const path = require('node:path');
-const rssPlugin = require('@11ty/eleventy-plugin-rss');
+import { EleventyRenderPlugin } from '@11ty/eleventy';
+import markdownIt from 'markdown-it';
+import { html5Media as markdownItHTML5Media } from 'markdown-it-html5-media';
+import Image from '@11ty/eleventy-img';
+import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
+import { DateTime } from 'luxon';
+import path from 'node:path';
+import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 
 // Site directories
 const dir = {
@@ -18,28 +19,41 @@ const dir = {
 // Template language for the site: https://www.11ty.dev/docs/languages/liquid/
 const TEMPLATE_ENGINE = 'liquid';
 
-module.exports = function(eleventyConfig) {
+export default async function(eleventyConfig) {
     // Watch targets
     eleventyConfig.addWatchTarget(`${dir.input}/_assets/styles`);
 
     // Static assets
     eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': 'assets/fonts' });
-    eleventyConfig.addPassthroughCopy("src/**/*.gif");
-    eleventyConfig.addPassthroughCopy("src/**/*.webm");
-    eleventyConfig.addPassthroughCopy("src/**/*.mp4");
-    eleventyConfig.addPassthroughCopy("src/**/*.mp3");
+    eleventyConfig.addPassthroughCopy('src/**/*.gif');
+    eleventyConfig.addPassthroughCopy('src/**/*.webm');
+    eleventyConfig.addPassthroughCopy('src/**/*.mp4');
+    eleventyConfig.addPassthroughCopy('src/**/*.mp3');
 
     // robots.txt
     eleventyConfig.addPassthroughCopy('src/robots.txt');
 
     // Render plugin
-    eleventyConfig.addPlugin(EleventyRenderPlugin, {
-        tagName: 'renderTemplate',
-        tagNameFile: 'renderFile',
-    });
+    eleventyConfig.addPlugin(EleventyRenderPlugin);
 
     // RSS Plugin
-    eleventyConfig.addPlugin(rssPlugin);
+    eleventyConfig.addPlugin(feedPlugin, {
+        type: 'atom',
+        outputPath: '/blog/atom.xml',
+        collection: {
+            name: 'article',
+            limit: 10
+        },
+        metadata: {
+            title: 'ectcetera',
+            subtitle: 'Experiments in gamedev and more.',
+            language: 'en',
+            base: 'https://ectcetera.net/',
+            author: {
+                name: 'Ella Tucker'
+            }
+        }
+    });
 
     // Markdown-it configuration
     const options = {
@@ -49,7 +63,7 @@ module.exports = function(eleventyConfig) {
     };
     const markdownLibrary = markdownIt(options)
         .disable('code')
-        .use(html5Media);
+        .use(markdownItHTML5Media);
     eleventyConfig.setLibrary('md', markdownLibrary);
 
     // Custom Markdown syntax - '---endpreview' to seperate article preview
@@ -87,7 +101,8 @@ module.exports = function(eleventyConfig) {
                 const name = path.parse(src).name;
                 return `${name}-${width}.${format}`;
             },
-            urlPath: '/' + dir
+            urlPath: '/' + dir,
+            transformOnRequest: process.env.ELEVENTY_RUN_MODE === 'serve'
         });
 
         const imageAttributes = {
@@ -99,7 +114,7 @@ module.exports = function(eleventyConfig) {
 
         return Image.generateHTML(imageMetadata, imageAttributes);
     };
-    eleventyConfig.addAsyncShortcode("relImage", async function(
+    eleventyConfig.addAsyncShortcode('relImage', async function(
         image,
         alt = 'Header',
         widths = [400, 800, 1280, 2560],
@@ -108,7 +123,7 @@ module.exports = function(eleventyConfig) {
     {
         return fullImage(this.page.url, image, alt, widths, formats, sizes);
     });
-    eleventyConfig.addAsyncShortcode("specImage", async function(
+    eleventyConfig.addAsyncShortcode('specImage', async function(
         dir,
         image,
         alt = 'Header',
@@ -119,7 +134,9 @@ module.exports = function(eleventyConfig) {
         return fullImage(dir, image, alt, widths, formats, sizes);
     });
 
-    eleventyConfig.addAsyncShortcode("currentDateSitemap", async function(date = DateTime.now()) {
+    eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);
+
+    eleventyConfig.addAsyncShortcode('currentDateSitemap', async function(date = DateTime.now()) {
         return date;
     });
     eleventyConfig.addFilter('postDate', async function(date) {
@@ -156,12 +173,12 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addAsyncShortcode("audioPlayer", async function(filename) {
         return `<audio src="${filename}" preload="metadata" controls></audio>`;
     });
+};
 
-    return {
-        dir,
-        dataTemplateEngine: TEMPLATE_ENGINE,
-        markdownTemplateEngine: TEMPLATE_ENGINE,
-        htmlTemplateEngine: TEMPLATE_ENGINE,
-        templateFormats: ['html', 'md', 'njk', TEMPLATE_ENGINE],
-    };
+export const config = {
+    dir,
+    dataTemplateEngine: TEMPLATE_ENGINE,
+    markdownTemplateEngine: TEMPLATE_ENGINE,
+    htmlTemplateEngine: TEMPLATE_ENGINE,
+    templateFormats: ['html', 'md', 'njk', TEMPLATE_ENGINE],
 };

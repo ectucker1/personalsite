@@ -1,0 +1,14 @@
+---
+pagination:
+    data: collections.articleDateIndex
+    size: 1
+    alias: index
+layout: default
+permalink: /blog/{{ index[0] }}/
+---
+<h2 class="section-title-break">Blog Posts from {{ index[1][0].displayDate }}</h2>
+<div>
+  {%- for item in index[1] reversed -%}
+    {% renderFile './src/_includes/article_preview.html', item.post %}
+  {%- endfor -%}
+</div>

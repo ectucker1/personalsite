@@ -19,6 +19,15 @@ const dir = {
 // Template language for the site: https://www.11ty.dev/docs/languages/liquid/
 const TEMPLATE_ENGINE = 'liquid';
 
+// Date utils
+const urlDateYear = (date) => date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
+const urlDateMonth = (date) => date.toLocaleString('default', { month: '2-digit', timeZone: 'UTC' });
+const urlDateDay = (date) => date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
+
+const displayDateYear = (date) => date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
+const displayDateMonth = (date) => date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+const displayDateDay = (date) => date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
+
 export default async function(eleventyConfig) {
     // Watch targets
     eleventyConfig.addWatchTarget(`${dir.input}/_assets/styles`);
@@ -140,16 +149,10 @@ export default async function(eleventyConfig) {
         return date;
     });
     eleventyConfig.addFilter('postDate', async function(date) {
-        let day = date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
-        let month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
-        let year = date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
-        return day + ' ' + month + ', ' + year;
+        return `${displayDateDay(date)} ${displayDateMonth(date)}, ${displayDateYear(date)}`
     });
     eleventyConfig.addFilter('permalinkDate', async function(date) {
-        let day = date.toLocaleString('default', { day: '2-digit', timeZone: 'UTC' });
-        let month = date.toLocaleString('default', { month: '2-digit', timeZone: 'UTC' });
-        let year = date.toLocaleString('default', { year: 'numeric', timeZone: 'UTC' });
-        return `${year}/${month}/${day}`;
+        return `${urlDateYear(date)}/${urlDateMonth(date)}/${urlDateDay(date)}`;
     });
 
     eleventyConfig.addAsyncShortcode('relMe', async function(text, url) {
@@ -173,6 +176,40 @@ export default async function(eleventyConfig) {
     eleventyConfig.addAsyncShortcode("audioPlayer", async function(filename) {
         return `<audio src="${filename}" preload="metadata" controls></audio>`;
     });
+
+    // Custom collection for day/month/year
+    eleventyConfig.addCollection('articleDateIndex', async function (collectionsApi) {
+        const articles = collectionsApi.getFilteredByTag('article');
+
+        const articlesByYear = articles.map((post) => {
+            return {
+                urlDate: urlDateYear(post.date),
+                displayDate: displayDateYear(post.date),
+                post: post
+            }
+        });
+        const groupedByYear = Object.groupBy(articlesByYear, (post) => post.urlDate);
+
+        const articlesByMonth = articles.map((post) => {
+            return {
+                urlDate: `${urlDateYear(post.date)}/${urlDateMonth(post.date)}`,
+                displayDate: `${displayDateMonth(post.date)} ${displayDateYear(post.date)}`,
+                post: post
+            }
+        });
+        const groupedByMonth = Object.groupBy(articlesByMonth, (post) => post.urlDate);
+
+        const articlesByDay = articles.map((post) => {
+            return {
+                urlDate: `${urlDateYear(post.date)}/${urlDateMonth(post.date)}/${urlDateDay(post.date)}`,
+                displayDate: `${displayDateMonth(post.date)} ${displayDateDay(post.date)}, ${displayDateYear(post.date)}`,
+                post: post
+            }
+        });
+        const groupedByDay = Object.groupBy(articlesByDay, (post) => post.urlDate);
+
+        return Object.entries(groupedByYear).concat(Object.entries(groupedByMonth), Object.entries(groupedByDay));
+    })
 };
 
 export const config = {

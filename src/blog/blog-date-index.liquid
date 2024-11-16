@@ -5,6 +5,8 @@ pagination:
     alias: index
 layout: default
 permalink: /blog/{{ index[0] }}/
+eleventyComputed:
+  title: Blog Posts from {{ index[1][0].displayDate }}
 ---
 <h2 class="section-title-break">Blog Posts from {{ index[1][0].displayDate }}</h2>
 <div>

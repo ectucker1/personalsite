@@ -34,6 +34,7 @@ export default async function(eleventyConfig) {
 
     // Static assets
     eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': 'assets/fonts' });
+    eleventyConfig.addPassthroughCopy({ 'src/_assets/images': 'assets/images' });
     eleventyConfig.addPassthroughCopy('src/**/*.gif');
     eleventyConfig.addPassthroughCopy('src/**/*.webm');
     eleventyConfig.addPassthroughCopy('src/**/*.mp4');

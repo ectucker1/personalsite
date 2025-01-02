@@ -42,3 +42,5 @@ Most text uses the [FigTree](https://github.com/erikdkennedy/figtree/tree/master
 Headers use the [Electrolize](https://fonts.google.com/specimen/Electrolize) font by Gaslight.
 
 Icons are from [FontAwesome](https://fontawesome.com/). They are packaged into a webfont using [svgtofont](https://www.npmjs.com/package/svgtofont).
+
+Background is from [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/herringbone-pattern/) designed by [Myriam Lefebvre](https://myriamlefebvre.ca/).

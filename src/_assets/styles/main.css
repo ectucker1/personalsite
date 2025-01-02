@@ -52,6 +52,7 @@
 
 /* General page setup */
 html {
+	background-image: url("/assets/images/herringbone.webp"), url("/assets/images/herringbone.jpg");
 	background-color: var(--accent-background);
 }
 body {

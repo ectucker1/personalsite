@@ -19,7 +19,7 @@ I'm 24 years old.
 And also, I'm trans and proud!
 
 If any of that sounds like something you'd like to chat about, feel free to reach out on {% relMe "Mastodon", "https://kind.social/@ectcetera" %} or {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.bsky.social" %}!
-You can also follow the [Atom Feed](/blog/atom.xml) of the blog.
+You can also follow the [Atom/RSS Feed](/blog/atom.xml) of the blog.
 
 Below you can find a collection of recent blog posts and all-time favorite creations.
 There's a slightly more expansive project list [here](/projects), though I still haven't copied over everything from my [itch.io](https://ect.itch.io/) or [Ludum Dare](https://ldjam.com/users/ectucker1/games/) page.

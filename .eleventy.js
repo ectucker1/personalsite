@@ -92,7 +92,8 @@ export default async function(eleventyConfig) {
     // Image shortcode
     // Inspired by https://www.aleksandrhovhannisyan.com/blog/eleventy-image-plugin/ and https://gfscott.com/blog/eleventy-img-without-central-image-directory/
     const fullImage = async function(
-        dir,
+        inputDir,
+        outputDir,
         image,
         alt = 'Header',
         widths = [400, 800, 1280, 2560],
@@ -103,15 +104,15 @@ export default async function(eleventyConfig) {
             dir = dir.substring(1);
         }
 
-        const imageMetadata = await Image('src/' + dir + image, {
+        const imageMetadata = await Image(inputDir + image, {
             widths: [...widths, null],
             formats: [...formats],
-            outputDir: './_site/' + dir,
+            outputDir: './_site/' + outputDir,
             filenameFormat: function (id, src, width, format, options) {
                 const name = path.parse(src).name;
                 return `${name}-${width}.${format}`;
             },
-            urlPath: '/' + dir,
+            urlPath: '/' + outputDir,
             transformOnRequest: process.env.ELEVENTY_RUN_MODE === 'serve'
         });
 
@@ -131,7 +132,7 @@ export default async function(eleventyConfig) {
         formats = ['webp', 'jpeg'],
         sizes = '100vw')
     {
-        return fullImage(this.page.url, image, alt, widths, formats, sizes);
+        return fullImage(path.parse(this.page.inputPath).dir + '/', this.page.url, image, alt, widths, formats, sizes);
     });
     eleventyConfig.addAsyncShortcode('specImage', async function(
         dir,
@@ -141,7 +142,7 @@ export default async function(eleventyConfig) {
         formats = ['webp', 'jpeg'],
         sizes = '100vw')
     {
-        return fullImage(dir, image, alt, widths, formats, sizes);
+        return fullImage('src/' + dir, dir, image, alt, widths, formats, sizes);
     });
 
     eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);

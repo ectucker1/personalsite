@@ -9,8 +9,8 @@
     </div>
     <nav class="nav-block" role="navigation" aria-label="main navigation">
         <a class="nav-item clear-link {% if permalink == "/" %}nav-item-active{% endif %}" href="/">Home</a>
-        <a class="nav-item clear-link {% if permalink == "/projects/" %}nav-item-active{% endif %}" href="/projects">Projects</a>
-        <a class="nav-item clear-link {% if permalink == "/blog/" %}nav-item-active{% endif %}" href="/blog">Blog</a>
+        <a class="nav-item clear-link {% if permalink contains "projects/" %}nav-item-active{% endif %}" href="/projects">Projects</a>
+        <a class="nav-item clear-link {% if permalink contains "blog/" %}nav-item-active{% endif %}" href="/blog">Blog</a>
         <a class="nav-item clear-link {% if permalink == "/contact/" %}nav-item-active{% endif %}" href="/contact">Contact</a>
     </nav> 
 </header>

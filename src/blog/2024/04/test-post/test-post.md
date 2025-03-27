@@ -16,3 +16,19 @@ Example Paragraph
 Example List
 - Item 1
 - Item 2
+
+Example Ordered List
+1. Item 1
+2. Item 2
+
+More text
+
+## Header 2
+
+Paragraph
+
+### Header 3
+
+Paragraph
+
+{% relImage, "striped-teapot.png", "3D rendering of a teapot" %}

@@ -100,8 +100,8 @@ export default async function(eleventyConfig) {
         formats = ['webp', 'jpeg'],
         sizes = '100vw'
     ) {
-        if (dir[0] == '/') {
-            dir = dir.substring(1);
+        if (outputDir[0] == '/') {
+            outputDir = outputDir.substring(1);
         }
 
         const imageMetadata = await Image(inputDir + image, {

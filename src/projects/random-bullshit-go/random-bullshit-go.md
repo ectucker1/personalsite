@@ -1,9 +1,11 @@
 ---
 permalink: projects/random-bullshit-go/
+tags: ['project', 'highlight']
 title: Random Bullshit Go
-date: 2024-05-11
+preview_img: random-bullshit-go.jpg
+date: 2025-05-13
 start_date: 2022
-end_date: 2024
+end_date: 2025
 layout: justapage
 ---
 

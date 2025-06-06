@@ -5,14 +5,16 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for page in collections.all %}
-        <url>
-            <loc>https://ectcetera.net{{ page.url | url }}</loc>
-            <lastmod>{% currentDateSitemap date %}</lastmod>
-            {% if page.data.changeFreq %}
-                <changefreq>{{ page.data.changeFreq }}</changefreq>
-            {% else %}
-                <changefreq>{{ "monthly" }}</changefreq>
-            {% endif %}
-        </url>
+        {% if page.data.secret == blank %}
+            <url>
+                <loc>https://ectcetera.net{{ page.url | url }}</loc>
+                <lastmod>{% currentDateSitemap date %}</lastmod>
+                {% if page.data.changeFreq %}
+                    <changefreq>{{ page.data.changeFreq }}</changefreq>
+                {% else %}
+                    <changefreq>{{ "monthly" }}</changefreq>
+                {% endif %}
+            </url>
+        {% endif %}
     {% endfor %}
 </urlset>

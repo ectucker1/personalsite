@@ -18,7 +18,7 @@ I'm based out of Kansas.
 I'm 24 years old.
 And also, I'm trans and proud!
 
-If any of that sounds like something you'd like to chat about, feel free to reach out on {% relMe "Mastodon", "https://kind.social/@ectcetera" %} or {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.bsky.social" %}!
+If any of that sounds like something you'd like to chat about, feel free to reach out on {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.net" %} or {% relMe "Mastodon", "https://kind.social/@ectcetera" %}!
 You can also follow the [Atom/RSS Feed](/blog/atom.xml) of the blog.
 
 Below you can find a collection of recent blog posts and all-time favorite creations.

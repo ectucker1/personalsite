@@ -7,8 +7,8 @@ I've left a few accounts around the web.
 Here I gather and bind them together through the ritual of hyperlinking.
 
 For casual conversation, personal questions, or low-stakes collaborative proposals:
+- {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.net" %}
 - {% relMe "Mastodon", "https://kind.social/@ectcetera" %}
-- {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.bsky.social" %}
 
 For source code or comments on specific projects:
 - {% relMe "GitHub", "https://github.com/ectucker1" %}

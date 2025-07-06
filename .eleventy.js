@@ -6,6 +6,7 @@ import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
 import { DateTime } from 'luxon';
 import path from 'node:path';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 // Site directories
 const dir = {
@@ -75,6 +76,8 @@ export default async function(eleventyConfig) {
         .disable('code')
         .use(markdownItHTML5Media);
     eleventyConfig.setLibrary('md', markdownLibrary);
+
+    eleventyConfig.addPlugin(syntaxHighlight);
 
     // Custom Markdown syntax - '---endpreview' to seperate article preview
     eleventyConfig.addFilter('markdownPreview', function(value) {

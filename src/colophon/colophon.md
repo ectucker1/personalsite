@@ -6,7 +6,7 @@ title: Colophon
 
 ### License
 
-This site &copy;2024 {{ name.full_name }}.
+This site &copy;2023-2025 {{ name.full_name }}.
 
 Site content (writing, imagery, music, videos, etc.) is licensed under [Creative Commons Attribution-ShareAlike](https://creativecommons.org/licenses/by-sa/4.0/) unless otherwise stated.
 You can do whatever you want with it so long as you provide credit and license your work under a similar Creative Commons license.
@@ -24,7 +24,7 @@ And I want to be able to share that place with others!
 I _mostly_ try to follow principles of [Brutalist Web Design](https://brutalist-web.design/).
 The content comes first!
 
-No generative AI is used in any writing on this site.
+No generative AI is used in any writing on this site, unless specifically stated for the purpose of discussing its outputs.
 What would be the point of having my own website if I was going to let a machine write the words on it?
 
 ### Tech
@@ -36,7 +36,7 @@ Content is stored in plain text files.
 It requires no client side JavaScript.
 
 CSS styles are processed with [PostCSS](https://postcss.org/), mostly for autoprefixing.
-[Normalize CSS](https://necolas.github.io/normalize.css/) is used as a base, but otherwise the styles are hand-written.
+[Normalize CSS](https://necolas.github.io/normalize.css/) is used as a base and syntax highlighting uses the [Atelier](https://atelierbram.github.io/syntax-highlighting/atelier-schemes/sulphurpool/) color scheme (provided by [PrismJS](https://github.com/PrismJS/prism-themes)).
 
 Most text uses the [FigTree](https://github.com/erikdkennedy/figtree/tree/master) font by The Figtree Project Authors.
 Headers use the [Electrolize](https://fonts.google.com/specimen/Electrolize) font by Gaslight.

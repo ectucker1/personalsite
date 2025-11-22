@@ -4,33 +4,42 @@
 @import "../../../node_modules/prism-themes/themes/prism-base16-ateliersulphurpool.light.css";
 
 @font-face {
-	font-family: 'Figtree';
-	src: local('Figtree Medium'), local('Figtree-Medium'),
-		url('/assets/fonts/figtree/Figtree-Medium.woff2') format('woff2'),
-		url('/assets/fonts/figtree/Figtree-Medium.woff') format('woff'),
-		url('/assets/fonts/figtree/Figtree-Medium.ttf') format('truetype');
+    font-family: "Figtree";
+    src:
+        local("Figtree Medium"),
+        local("Figtree-Medium"),
+        url("/assets/fonts/figtree/Figtree-Medium.woff2") format("woff2"),
+        url("/assets/fonts/figtree/Figtree-Medium.woff") format("woff"),
+        url("/assets/fonts/figtree/Figtree-Medium.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-	font-family: 'Electrolize';
-	src: local('Electrolize'), local('Electrolize-Regular'),
-		url('/assets/fonts/electrolize/Electrolize-Regular.woff2') format('woff2'),
-		url('/assets/fonts/electrolize/Electrolize-Regular.woff') format('woff'),
-		url('/assets/fonts/electrolize/Electrolize-Regular.ttf') format('truetype');
+    font-family: "Electrolize";
+    src:
+        local("Electrolize"),
+        local("Electrolize-Regular"),
+        url("/assets/fonts/electrolize/Electrolize-Regular.woff2")
+            format("woff2"),
+        url("/assets/fonts/electrolize/Electrolize-Regular.woff") format("woff"),
+        url("/assets/fonts/electrolize/Electrolize-Regular.ttf")
+            format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-	font-family: 'ectcetera-icons';
-	src: url('/assets/fonts/ectcetera-icons/ectcetera-icons.woff2') format('woff2'),
-		url('/assets/fonts/ectcetera-icons/ectcetera-icons.woff') format('woff'),
-		url('/assets/fonts/ectcetera-icons/ectcetera-icons.ttf') format('truetype'),
-		url('/assets/fonts/ectcetera-icons/ectcetera-icons.svg') format('svg');
+    font-family: "ectcetera-icons";
+    src:
+        url("/assets/fonts/ectcetera-icons/ectcetera-icons.woff2")
+            format("woff2"),
+        url("/assets/fonts/ectcetera-icons/ectcetera-icons.woff") format("woff"),
+        url("/assets/fonts/ectcetera-icons/ectcetera-icons.ttf")
+            format("truetype"),
+        url("/assets/fonts/ectcetera-icons/ectcetera-icons.svg") format("svg");
     font-display: swap;
 }
 
@@ -55,6 +64,7 @@
 html {
     background-image: url("/assets/images/herringbone.webp");
     background-color: var(--accent-background);
+    background-attachment: fixed;
 }
 body {
     margin: 40px auto;
@@ -71,7 +81,8 @@ body {
 }
 
 /* Standard prose elements */
-p, blockquote {
+p,
+blockquote {
     font-size: 1rem;
     margin-top: 0.75em;
     margin-bottom: 0.75em;
@@ -87,7 +98,9 @@ ol {
 li {
     font-size: 1rem;
 }
-picture, img, video {
+picture,
+img,
+video {
     max-width: max(min(100%, 800px), 80%);
     max-height: 50vw;
     width: auto;
@@ -120,8 +133,8 @@ a[href]:not(:where(
 	[href^="/"]:not([href^="//"]),
 	[href*="//ectcetera.net"]
 ))::after {
-	content: '\ea01';
-	font-family: 'ectcetera-icons' !important;
+    content: "\ea01";
+    font-family: "ectcetera-icons" !important;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -133,8 +146,8 @@ a[href]:not(:where(
 }
 /*Atom feed icon.*/
 a[href]:where([href*="atom.xml"])::after {
-	content: '\ea03';
-	font-family: 'ectcetera-icons' !important;
+    content: "\ea03";
+    font-family: "ectcetera-icons" !important;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -248,8 +261,8 @@ a.readmore:hover {
     color: var(--link-hover);
 }
 a.readmore::before {
-	content: '\ea02';
-	font-family: 'ectcetera-icons' !important;
+    content: "\ea02";
+    font-family: "ectcetera-icons" !important;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -352,7 +365,9 @@ a.readmore::before {
 .poster-project-image-column {
     margin-left: var(--section-margin);
     margin-right: var(--section-margin);
-	a, picture, img {
+    a,
+    picture,
+    img {
         display: block;
         margin: 0;
         padding: 0;

@@ -2,18 +2,15 @@ My name is {{ first_name }}!
 I'm a software developer and general-purpose oddity tinkerer.
 This site is my portfolio/blog/dedicated hyperlink collecting zone.
 
-While I do plenty of technical stuff professionally, this site mostly showcases my personal projects.
+While I do plenty of technical stuff professionally, this place mostly showcases my personal projects.
 
 Many of these projects are games.
-I've been doing gamedev as a hobby for almost 10 years now, starting with my [first Ludum Dare entry](/projects/ld32-golden-spork/) in 2015 (they got better; I swear).
-Currently, I'm developing [Random Bullshit Go](/projects/random-bullshit-go/), a real-time online multiplayer card game where timing is everything.
-
-I also make a variety of [electronic and other music](/music/).
-I play synthesizer and drum machine in a local indie rock-ish band, which I'll link to as soon as we actually record a song.
+I've been doing gamedev as a hobby for [over 10 years now](/blog/2025/03/30/ten-years-of-game-jams)!
+My most recent release was [Random Bullshit Go](/projects/random-bullshit-go/), a hyper-interactive real-time online multiplayer card game where timing is everything.
 
 I'm always tinkering with, learning about, or reflecting on something, and I'll be posting about that [my blog](/blog).
 
-Outside of the computer, I dabble in sci-fi literature, Magic the Gathering, and obscure rules-light tabletop RPGs.
+Outside of the computer, I enjoy playing music, reading sci-fi novels, and running obscure rules-light tabletop RPGs.
 I'm based out of Kansas.
 I'm 24 years old.
 And also, I'm trans and proud!

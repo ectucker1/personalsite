@@ -3,54 +3,55 @@ permalink: projects/random-bullshit-go/
 tags: ['project', 'highlight']
 title: Random Bullshit Go
 preview_img: random-bullshit-go.jpg
-date: 2025-05-13
+date: 2025-08-24
 start_date: 2022
 end_date: 2025
 layout: justapage
 ---
 
-Counter cards, rearrange cards, and play chicken.
-Random Bullshit Go is an **in-development** real-time online multiplayer card game where timing is everything.
+Come out on top of chaos!
+Random Bullshit Go is a hyper-interactive real-time free-for-all card game for 3-5 players.
 
-Everything in the game plays on a "Stack" much like in MTG.
-Cards have no effect until the cards above them on the Stack resolve.
-Everyone gets a chance to respond to everything.
-And to respond to the response.
+You can download it [free on itch.io](https://ect.itch.io/random-bullshit-go).
 
 ---endpreview
 
-### Gameplay
+{% relImage, "screenshot1.jpg", "Screenshot of Random Bullshit Go, in which an Inciting Incident is on the stack below a Fork and a Stopsign targeting it." %}
 
-The goal of Random Bullshit Go is simple - get to 15 points.
-A basic card like Bread might say something like "Target player gains 3 points."
-If you played 5 copies of Bread without any responses, you'd win!
+### Adapt to Bullshit
 
-But probably the other players will do something about your bread.
-They might play a card like Stopsign, which could negate the card entirely.
-They might Redirect your bread, changing it to target themselves.
-Or they might play so many of their own point gaining cards that everyone forgets about your Bread, sitting there on the bottom of the stack.
+The goal of the game is simple: be the first to 15 points.
+That would be easy, if not for your friends trying to stop you. Other players might:
 
-{% relImage, "screenshot1.jpg", "Screenshot of Random Bullshit Go, in which a Bread is on the stack below a Redirect and a Stopsign targeting it." %}
+- Counter your cards
+- Redirect your cards to use them for themselves
+- Rearrange the ordering so their cards happen first
+- And more!
 
-Since these responses are on top of your Bread on the stack, their effects will happen first.
+Anticipate it, and do the same to them!
 
-Oh, and there's a timer pushing things along.
-If the timer runs out, the top card on the stack will resolve, applying its effects.
-You'll have to decide quick what to do if you don't want that to happen.
-Or wait it out in hopes someone else handles it.
+### Timing is Everything
 
-If the timer runs out with no cards left on the stack, everyone draws 5 more cards and the chaos begins again.
+Every card you play goes on the stack.
+The stack is first-in-last-out — if you play a card, then someone else plays a card, their card will resolve (take effect) first.
+If someone else plays a third card, that resolves first, and so on.
+Utilizing the order of the stack is key to victory!
 
-Other gameplay details:
-- The game plays best with 3-5 players.
-- Players draw from a shared deck.
-- There's no mana or other resources - playing a card is free, except for the card.
-- There's no priority - if the timer is ticking, you can play a card.
-- At the start of each round, a random player gets targeted with an Inciting Incident card to get things moving.
-
-Here's a few more cards to get your imagination flowing:
+Unlike most card games, this is all real-time.
+There's no need to wait your turn; you can play your cards whenever. 
+But if everyone waits too long, the top card on the stack will resolve!
 
 {% relImage, "cards-of-note.jpg", "Cards from Random Bullshit Go, including Die Roll, Phil's Prism, Corruption, and Gizmo." %}
+
+### Tweak the Rules
+
+Random Bullshit Go provides a variety of gamemodes for distinct experiences.
+What would it be like if you only needed 1 point to win?
+What if the timer was twice as fast?
+What if there were more Chicken Storms in the deck?
+Change the options and see!
+
+{% relImage, "screenshot2.png", "Screenshot of Random Bullshit Go, showing the deck editor." %}
 
 ### Inspirations
 
@@ -73,8 +74,6 @@ Other miscellaneous inspirations:
 
 ### Development
 
-The game is being developed in my spare time using the Godot game engine.
-It was on the backburner for a couple years during college, but is my main creative focus now.
-Once it's ready, it will be released for free on [itch.io](https://ect.itch.io/).
-
-For updates, you can follow me on {% relMe "Bluesky", "https://bsky.app/profile/ectcetera.net" %}, {% relMe "Mastodon", "https://kind.social/@ectcetera" %}, {% relMe "itch.io", "https://ect.itch.io/" %}, or my blog's [Atom/RSS Feed](/blog/atom.xml).
+The game was developed as a hobby project using the Godot game engine.
+It started with a paper prototype during the "paper game jam" at K-State's Game Dev Club.
+But the paper version was both fun enough to play and hard enough to manage that it became obvious I needed to make a digital version.

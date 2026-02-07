@@ -8,9 +8,7 @@
     src:
         local("Figtree Medium"),
         local("Figtree-Medium"),
-        url("/assets/fonts/figtree/Figtree-Medium.woff2") format("woff2"),
-        url("/assets/fonts/figtree/Figtree-Medium.woff") format("woff"),
-        url("/assets/fonts/figtree/Figtree-Medium.ttf") format("truetype");
+        url("/assets/fonts/figtree/Figtree-Medium.woff2") format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -22,10 +20,7 @@
         local("Electrolize"),
         local("Electrolize-Regular"),
         url("/assets/fonts/electrolize/Electrolize-Regular.woff2")
-            format("woff2"),
-        url("/assets/fonts/electrolize/Electrolize-Regular.woff") format("woff"),
-        url("/assets/fonts/electrolize/Electrolize-Regular.ttf")
-            format("truetype");
+            format("woff2");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -33,13 +28,8 @@
 
 @font-face {
     font-family: "ectcetera-icons";
-    src:
-        url("/assets/fonts/ectcetera-icons/ectcetera-icons.woff2")
-            format("woff2"),
-        url("/assets/fonts/ectcetera-icons/ectcetera-icons.woff") format("woff"),
-        url("/assets/fonts/ectcetera-icons/ectcetera-icons.ttf")
-            format("truetype"),
-        url("/assets/fonts/ectcetera-icons/ectcetera-icons.svg") format("svg");
+    src: url("/assets/fonts/ectcetera-icons/ectcetera-icons.woff2")
+        format("woff2");
     font-display: swap;
 }
 

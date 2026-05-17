@@ -1,0 +1,20 @@
+{
+  "01-arrow-up-right-from-square-solid": {
+    "encodedCode": "\\ea01",
+    "prefix": "ectcetera-icons",
+    "className": "ectcetera-icons-01-arrow-up-right-from-square-solid",
+    "unicode": "&#59905;"
+  },
+  "02-book-open-solid": {
+    "encodedCode": "\\ea02",
+    "prefix": "ectcetera-icons",
+    "className": "ectcetera-icons-02-book-open-solid",
+    "unicode": "&#59906;"
+  },
+  "03-rss-solid": {
+    "encodedCode": "\\ea03",
+    "prefix": "ectcetera-icons",
+    "className": "ectcetera-icons-03-rss-solid",
+    "unicode": "&#59907;"
+  }
+}

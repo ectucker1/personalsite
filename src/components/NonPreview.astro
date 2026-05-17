@@ -1,0 +1,22 @@
+---
+interface Props {
+    preview?: boolean;
+}
+
+const { preview } = Astro.props;
+
+console.log(preview);
+---
+
+<Fragment>
+    {
+        !preview ? (
+            <Fragment>
+                <slot name="preview" />
+                <slot />
+            </Fragment>
+        ) : (
+            <slot name="preview" />
+        )
+    }
+</Fragment>

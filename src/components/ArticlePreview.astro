@@ -1,0 +1,21 @@
+---
+import { displayDate } from "@data/date";
+import { postUrl } from "@data/post";
+
+const { post } = Astro.props;
+---
+
+<article>
+    <div class="section-title-break">
+        <a class="clear-link" href={postUrl(post)}>
+            <h3 class=" tagged-header">{post.data.title}</h3>
+        </a>
+        <span class="tag-date">{displayDate(post.data.date)}</span>
+    </div>
+    <div class="section-generic">
+        <p>
+            { post.data.tagline }
+            <a class="readmore" href={postUrl(post)}>Read More</a>
+        </p>
+    </div>
+</article>

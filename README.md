@@ -1,7 +1,7 @@
 # Personal Website
 
 This repo contains the code for my personal website.
-It is a mostly static site created using [11ty](https://www.11ty.dev/).
+It is a mostly static site created using [Astro](https://astro.build/).
 
 The site isn't yet finished, but is served nonetheless at [ectcetera.net](https://www.ectcetera.net/).
 

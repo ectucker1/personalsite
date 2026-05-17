@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HomeContent from "@copytext/HomeContent.mdx";
+import ArticlePreview from "@components/ArticlePreview.astro";
+import ProjectPreview from "@components/ProjectPreview.astro";
+
+const allPosts = await getCollection("blog");
+const recentPosts = allPosts
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .slice(0, 3);
+
+const allProjects = await getCollection("projects");
+const highlightedProjects = allProjects
+    .filter((project) => project.data.highlight)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout>
+    <h2 class="section-title-break">Hello!</h2>
+    <div class="section-generic">
+        <HomeContent />
+    </div>
+    <h2 class="section-title-break">Recent Posts</h2>
+    <div>
+        {recentPosts.map((post) => <ArticlePreview post={post} />)}
+    </div>
+    <h2 class="section-title-break">Featured Projects</h2>
+    <div>
+        {
+            highlightedProjects.map((project) => (
+                <ProjectPreview project={project} />
+            ))
+        }
+    </div>
+</BaseLayout>

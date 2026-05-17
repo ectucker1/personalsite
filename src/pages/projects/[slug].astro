@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => {
+        const slug = project.id.split("/").pop() ?? project.id;
+        return {
+            params: { slug },
+            props: { project },
+        };
+    });
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title}>
+    <div class="section-title-break">
+        <h2 class="tagged-header">{project.data.title}</h2>
+        <span class="tag-date">{ project.data.start_date } - { project.data.end_date }</span>
+    </div>
+    <div class="section-generic">
+        <img src={"/" + project.filePath + "/../" + project.data.preview_img}/>
+        <Content/>
+    </div>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import name from "@data/name.ts";
+
+console.log(Astro.url.pathname);
+---
+
+<header class="section-header">
+    <div class="header-title-block">
+        <a href="/" class="clear-link">
+            <h1 class="header-name">
+                {name.formal_name}
+            </h1>
+        </a>
+        <h1 class="header-title">&The Rest</h1>
+    </div>
+    <nav class="nav-block" aria-label="main navigation">
+        <a
+            class={Astro.url.pathname === "/"
+                ? "nav-item clear-link nav-item-active"
+                : "nav-item clear-link"}
+            href="/">Home</a
+        >
+        <a
+            class={Astro.url.pathname.startsWith("/projects")
+                ? "nav-item clear-link nav-item-active"
+                : "nav-item clear-link"}
+            href="/projects">Projects</a
+        >
+        <a
+            class={Astro.url.pathname.startsWith("/blog")
+                ? "nav-item clear-link nav-item-active"
+                : "nav-item clear-link"}
+            href="/blog">Blog</a
+        >
+        <a
+            class={Astro.url.pathname.startsWith("/contact")
+                ? "nav-item clear-link nav-item-active"
+                : "nav-item clear-link"}
+            href="/contact">Contact</a
+        >
+    </nav>
+</header>

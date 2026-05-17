@@ -1,0 +1,59 @@
+---
+import { projectUrl } from "@data/project";
+import { render } from "astro:content";
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+{
+    project.data.preview_img === undefined ? (
+        <div class="section-generic">
+            <div class="poster-project-header-block">
+                <a class="clear-link" href={projectUrl(project)}>
+                    <h3 class="tagged-header">{project.data.title}</h3>
+                </a>
+                <span class="tag-date">
+                    {project.data.start_date} - {project.data.end_date}
+                </span>
+            </div>
+            <div class="poster-project-text-content">
+                <Content preview />
+                <a class="readmore" href={projectUrl(project)}>
+                    Read More
+                </a>
+            </div>
+        </div>
+    ) : (
+        <div class="section-poster-project">
+            <div class="poster-project-image-column">
+                <a class="clear-link" href={projectUrl(project)}>
+                    <img
+                        src={
+                            "/" +
+                            project.filePath +
+                            "/../" +
+                            project.data.preview_img
+                        }
+                    />
+                </a>
+            </div>
+            <div class="poster-project-text-column">
+                <div class="poster-project-header-block">
+                    <a class="clear-link" href={projectUrl(project)}>
+                        <h3 class="tagged-header">{project.data.title}</h3>
+                    </a>
+                    <span class="tag-date">
+                        {project.data.start_date} - {project.data.end_date}
+                    </span>
+                </div>
+                <div class="poster-project-text-content">
+                    <Content preview />
+                    <a class="readmore" href={projectUrl(project)}>
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </div>
+    )
+}

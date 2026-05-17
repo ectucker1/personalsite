@@ -1,0 +1,66 @@
+---
+title: Test Post Please Ignore
+date: 2024-04-17
+tagline: This is just to test out the blog section. More to come soon hopefully!
+---
+import AsideRow from '@components/AsideRow.astro'
+
+Example Paragraph
+
+*Example Italics*
+
+**Example Bold**
+
+Example List
+- Item 1
+- Item 2
+
+Example Ordered List
+1. Item 1
+2. Item 2
+
+More text
+
+## Header 2
+
+Paragraph
+
+### Header 3
+
+Paragraph
+
+### Images
+
+![3D rendering of a teapot](striped-teapot.png)
+
+### Code
+
+```js
+const allPosts = await getCollection("blog");
+const posts = allPosts
+    .filter((post) => post.data.date.getUTCFullYear() === parsedYear)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+```
+
+### Blockquote
+
+I say something
+
+> Someone else says something.
+
+### Aside
+
+<AsideRow>
+
+I keep saying the main text here.
+
+Maybe write a couple paragraphs.
+
+<Fragment slot="aside">
+
+Something on the side here!
+
+Still _formatted_.
+
+</Fragment>
+</AsideRow>

@@ -1,37 +1,24 @@
 {
-  "name": "personalsite",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "ectcetera-site",
   "type": "module",
-  "scripts": {
-    "serve": "npm-run-all --parallel serve:*",
-    "serve:html": "cross-env ELEVENTY_ENV=development npx @11ty/eleventy --serve --incremental --port=8080",
-    "serve:css": "postcss --watch src/_assets/styles/*.css -o _site/assets/styles/main.css --map",
-    "build": "run-s build:html build:css",
-    "build:html": "cross-env ELEVENTY_ENV=production npx @11ty/eleventy",
-    "build:css": "postcss src/_assets/styles/*.css -o _site/assets/styles/main.css --no-map",
-    "font": "svgtofont --sources ./fonticons --output ./src/_assets/fonts/ectcetera-icons"
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/node": "^10.1.0",
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.3.1"
+  },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-img": "^5.0.0",
-    "@11ty/eleventy-plugin-rss": "^2.0.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
-    "autoprefixer": "^10.4.17",
-    "cross-env": "^7.0.3",
-    "cssnano": "^7.0.6",
-    "markdown-it-html5-media": "^0.7.1",
     "normalize.css": "^8.0.1",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.35",
-    "postcss-cli": "^11.0.0",
-    "postcss-import": "^16.1.0",
-    "prism-themes": "^1.9.0",
-    "sharp": "^0.33.5",
-    "svgtofont": "^6.0.0"
+    "prism-themes": "^1.9.0"
   }
 }

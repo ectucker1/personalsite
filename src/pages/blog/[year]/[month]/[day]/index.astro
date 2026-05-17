@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ArticlePreview from "@components/ArticlePreview.astro";
+import { displayDate } from "@data/date";
+
+export const prerender = false;
+
+const { year, month, day } = Astro.params;
+
+const parsedYear = year ? parseInt(year, 10) : NaN;
+const parsedMonth = month ? parseInt(month, 10) - 1 : NaN;
+const parsedDay = day ? parseInt(day, 10) : NaN;
+
+if (isNaN(parsedYear)) {
+    return new Response(null, { status: 404 });
+}
+if (isNaN(parsedMonth) || parsedMonth < 0 || parsedMonth > 11) {
+    return new Response(null, { status: 404 });
+}
+const daysInMonth = new Date(parsedYear, parsedMonth + 1, 0).getDate();
+if (isNaN(parsedDay) || parsedDay < 1 || parsedDay > daysInMonth) {
+    return new Response(null, { status: 404 });
+}
+
+const fakeDate = new Date(parsedYear, parsedMonth, parsedDay);
+
+const allPosts = await getCollection("blog");
+const posts = allPosts
+    .filter((post) => post.data.date.getUTCFullYear() === parsedYear && post.data.date.getUTCMonth() === parsedMonth && post.data.date.getDate() === parsedDay)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const title = `Blog Posts from ${displayDate(fakeDate)}`;
+---
+
+<BaseLayout title={title}>
+    <h2 class="section-title-break">{title}</h2>
+    <div>
+        {
+            posts.length === 0 ? 
+            (
+              <div class="section-generic">
+                  <p>No posts on this day.</p>
+              </div>
+            ) 
+            :
+            (posts.map((post) => <ArticlePreview post={post}/>))
+        }
+    </div>
+</BaseLayout>

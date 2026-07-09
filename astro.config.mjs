@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import { fileURLToPath, URL } from "node:url";
 
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 import node from "@astrojs/node";
 
@@ -19,7 +20,7 @@ export default defineConfig({
     assetsInclude: ["**/*.mp4", "**/*.webm", "**/*.mp3", "**/*.gif"],
   },
 
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     syntaxHighlight: "prism",
   },

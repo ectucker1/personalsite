@@ -24,7 +24,13 @@ export default defineConfig({
     layout: "fixed",
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      // Filter out "posts from ..." pages from sitemap
+      filter: (page) => !/^\d+$/.test(page.split("/").at(-1) ?? ""),
+    }),
+  ],
   markdown: {
     syntaxHighlight: "prism",
   },

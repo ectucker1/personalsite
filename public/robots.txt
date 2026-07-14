@@ -2,7 +2,7 @@
 Host: https://ectcetera.net/
 
 # Sitemaps
-Sitemap: https://ectcetera.net/sitemap.xml
+Sitemap: https://ectcetera.net/sitemap-index.xml
 
 # *
 User-Agent: *

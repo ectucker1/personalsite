@@ -20,6 +20,10 @@ export default defineConfig({
     assetsInclude: ["**/*.mp4", "**/*.webm", "**/*.mp3", "**/*.gif"],
   },
 
+  image: {
+    layout: "fixed",
+  },
+
   integrations: [mdx(), sitemap()],
   markdown: {
     syntaxHighlight: "prism",

@@ -16,7 +16,7 @@ export async function GET(context) {
       name: "Ella Tucker",
       link: "https://ectcetera.net",
     },
-    description: "Experiments in gamedev and more.",
+    description: "General-purpose tinkering.",
     id: feedUrl,
     link: site.toString(),
     language: "en-us",

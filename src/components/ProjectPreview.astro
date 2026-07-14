@@ -1,9 +1,19 @@
 ---
 import { projectUrl } from "@data/project";
 import { render } from "astro:content";
+import type { ImageMetadata } from "astro";
+import { Picture } from "astro:assets";
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+const projectImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/projects/**/*.{jpeg,jpg,png,gif}",
+);
+const projectDocPath = "/" + project.filePath;
+const projectImagePath =
+    projectDocPath.substring(0, projectDocPath.lastIndexOf("/")) +
+    "/" +
+    project.data.preview_img;
 ---
 
 {
@@ -28,14 +38,7 @@ const { Content } = await render(project);
         <div class="section-poster-project">
             <div class="poster-project-image-column">
                 <a class="clear-link" href={projectUrl(project)}>
-                    <img
-                        src={
-                            "/" +
-                            project.filePath +
-                            "/../" +
-                            project.data.preview_img
-                        }
-                    />
+                    <Picture src={projectImages[projectImagePath]()} alt="" />
                 </a>
             </div>
             <div class="poster-project-text-column">

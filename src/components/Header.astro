@@ -38,5 +38,11 @@ console.log(Astro.url.pathname);
                 : "nav-item clear-link"}
             href="/contact">Contact</a
         >
+        <a
+            class={Astro.url.pathname.startsWith("/tools")
+                ? "nav-item clear-link nav-item-active"
+                : "nav-item clear-link"}
+            href="/tools">Tools</a
+        >
     </nav>
 </header>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transpose — plaintext music utility</title>
+<style>
+  :root{
+    --paper:#f3f4f1;
+    --panel:#ffffff;
+    --ink:#1b1c22;
+    --ink-soft:#5a5c66;
+    --ink-faint:#9a9ca6;
+    --line:#e3e4df;
+    --line-strong:#d0d1cb;
+    --accent:#5b46e0;
+    --accent-soft:#ece9fc;
+    --accent-ink:#3d2bb3;
+    --natural:#d9dad3;
+    --sharp:#33343d;
+    --focus:#5b46e0;
+    --mono:"SF Mono",ui-monospace,"Cascadia Mono","Roboto Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding:32px 20px 64px;
+  }
+  .wrap{max-width:1040px;margin:0 auto}
+
+  /* Header */
+  header{margin-bottom:26px}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 8px;
+  }
+  h1{
+    font-size:clamp(34px,6vw,52px);
+    line-height:1;
+    letter-spacing:-.02em;
+    font-weight:800;
+    margin:0 0 10px;
+  }
+  h1 .cursor{
+    color:var(--accent);
+    font-weight:800;
+    animation:blink 1.1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+  .lede{max-width:60ch;color:var(--ink-soft);margin:0;font-size:15px}
+  .lede code{
+    font-family:var(--mono);font-size:.85em;background:#fff;
+    border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--ink);
+  }
+
+  /* Console */
+  .console{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:0 1px 2px rgba(20,20,30,.04),0 10px 30px -18px rgba(20,20,30,.25);
+    overflow:hidden;
+    margin-top:24px;
+  }
+
+  /* Controls */
+  .controls{
+    display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;
+    padding:18px 20px;border-bottom:1px solid var(--line);
+  }
+  .ctl-label{
+    display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px;
+  }
+  .stepper{display:flex;align-items:center;gap:0}
+  .stepper button{
+    width:38px;height:38px;font-size:20px;line-height:1;
+    border:1px solid var(--line-strong);background:#fff;color:var(--ink);
+    cursor:pointer;display:grid;place-items:center;transition:background .12s,border-color .12s;
+  }
+  .stepper button:first-child{border-radius:9px 0 0 9px}
+  .stepper button:last-child{border-radius:0 9px 9px 0}
+  .stepper button:hover{background:var(--accent-soft);border-color:var(--accent)}
+  .stepper button:active{background:#e2ddfa}
+  .stepper input{
+    width:64px;height:38px;text-align:center;border:1px solid var(--line-strong);
+    border-left:none;border-right:none;font-family:var(--mono);font-size:18px;font-weight:600;
+    color:var(--ink);background:#fff;-moz-appearance:textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .stepper input:focus{outline:2px solid var(--focus);outline-offset:-2px;z-index:1;position:relative}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chips button{
+    font-family:var(--mono);font-size:12px;padding:4px 9px;border-radius:999px;
+    border:1px solid var(--line-strong);background:#fff;color:var(--ink-soft);cursor:pointer;
+    transition:all .12s;
+  }
+  .chips button:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+
+  .seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:9px;overflow:hidden}
+  .seg button{
+    font-family:var(--mono);font-size:14px;padding:9px 15px;border:none;background:#fff;
+    color:var(--ink-soft);cursor:pointer;transition:all .12s;
+  }
+  .seg button+button{border-left:1px solid var(--line-strong)}
+  .seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+  .seg button:not([aria-pressed="true"]):hover{background:var(--accent-soft);color:var(--accent-ink)}
+
+  .readout{margin-left:auto;text-align:right;min-width:150px}
+  .readout .amt{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:-.01em}
+  .readout .amt.zero{color:var(--ink-faint)}
+  .readout .interval{font-size:12px;color:var(--ink-soft);font-family:var(--mono)}
+
+  /* Chromatic strip — the signature */
+  .strip-wrap{padding:16px 20px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fbfbfa,#fff)}
+  .strip-cap{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .strip-cap .t{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .strip-cap .move{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:600}
+  svg.strip{width:100%;height:74px;display:block}
+  .cell-nat{fill:#fff;stroke:var(--line-strong)}
+  .cell-acc{fill:var(--natural);stroke:var(--line-strong)}
+  .cell-from{fill:var(--ink);stroke:var(--ink)}
+  .cell-to{fill:var(--accent);stroke:var(--accent)}
+  .celllbl{font-family:var(--mono);font-size:11px;fill:var(--ink-soft)}
+  .celllbl.on{fill:#fff;font-weight:700}
+  .arrowpath{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:4 3}
+  .arrowhead{fill:var(--accent)}
+
+  /* Editors */
+  .grid{display:grid;grid-template-columns:1fr 1fr}
+  .pane{display:flex;flex-direction:column;min-width:0}
+  .pane+.pane{border-left:1px solid var(--line)}
+  .pane-head{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:11px 16px;border-bottom:1px solid var(--line);
+  }
+  .pane-head .name{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+  .pane-head .name b{color:var(--ink);font-weight:700}
+  .icon-btn{
+    font-family:var(--mono);font-size:12px;border:1px solid var(--line-strong);background:#fff;
+    color:var(--ink-soft);border-radius:7px;padding:5px 10px;cursor:pointer;transition:all .12s;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+  .icon-btn.ok{border-color:var(--accent);color:#fff;background:var(--accent)}
+  textarea{
+    width:100%;flex:1;min-height:320px;resize:vertical;border:none;outline:none;
+    padding:16px;font-family:var(--mono);font-size:14px;line-height:1.7;color:var(--ink);
+    background:#fff;white-space:pre;overflow:auto;tab-size:4;
+  }
+  textarea::placeholder{color:var(--ink-faint)}
+  #out{background:#fbfbfd;color:var(--ink)}
+  #out mark, .hl{background:var(--accent-soft)}
+
+  footer{margin-top:20px;color:var(--ink-soft);font-size:13px}
+  footer .row{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+  footer .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  footer a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid var(--accent-soft);cursor:pointer}
+  footer a:hover{border-bottom-color:var(--accent)}
+  footer p{margin:8px 0 0;max-width:78ch}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr}
+    .pane+.pane{border-left:none;border-top:1px solid var(--line)}
+    .readout{margin-left:0;text-align:left;order:5}
+    .controls{gap:16px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Plaintext music utility</p>
+    <h1>Transpose<span class="cursor">_</span></h1>
+    <p class="lede">Shift every note and chord in your text up or down by a number of semitones. Naturals like <code>G</code>, sharps like <code>F#</code>, flats like <code>Bb</code>, and chords like <code>Cmaj7</code> or <code>D/F#</code> are moved — lyrics, spacing, and everything else stay exactly as written.</p>
+  </header>
+
+  <div class="console">
+    <!-- Controls -->
+    <div class="controls">
+      <div>
+        <span class="ctl-label">Semitones</span>
+        <div class="stepper">
+          <button type="button" id="dec" aria-label="Down one semitone">−</button>
+          <input id="steps" type="number" value="2" step="1" aria-label="Number of semitones to transpose">
+          <button type="button" id="inc" aria-label="Up one semitone">+</button>
+        </div>
+        <div class="chips" id="chips">
+          <button type="button" data-set="-12">−12</button>
+          <button type="button" data-set="-5">−5</button>
+          <button type="button" data-set="-2">−2</button>
+          <button type="button" data-set="0">0</button>
+          <button type="button" data-set="2">+2</button>
+          <button type="button" data-set="5">+5</button>
+          <button type="button" data-set="12">+12</button>
+        </div>
+      </div>
+
+      <div>
+        <span class="ctl-label">Accidentals</span>
+        <div class="seg" role="group" aria-label="Accidental spelling">
+          <button type="button" id="sharpBtn" aria-pressed="true">Sharps ♯</button>
+          <button type="button" id="flatBtn" aria-pressed="false">Flats ♭</button>
+        </div>
+      </div>
+
+      <div class="readout" aria-live="polite">
+        <div class="amt" id="amt">+2</div>
+        <div class="interval" id="interval">up · major 2nd</div>
+      </div>
+    </div>
+
+    <!-- Signature: chromatic step strip -->
+    <div class="strip-wrap">
+      <div class="strip-cap">
+        <span class="t">Chromatic shift</span>
+        <span class="move" id="move">C → D</span>
+      </div>
+      <svg class="strip" id="strip" viewBox="0 0 720 74" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+
+    <!-- Editors -->
+    <div class="grid">
+      <div class="pane">
+        <div class="pane-head">
+          <span class="name"><b>Source</b> · your text</span>
+          <button type="button" class="icon-btn" id="clearBtn">Clear</button>
+        </div>
+        <textarea id="in" spellcheck="false" placeholder="Paste a chord sheet or a line of notes…
+
+C        G        Am       F
+Twinkle twinkle little star
+
+Riff: E G A  A G E  D E G E D"></textarea>
+      </div>
+      <div class="pane">
+        <div class="pane-head">
+          <span class="name"><b>Transposed</b> · result</span>
+          <button type="button" class="icon-btn" id="copyBtn">Copy</button>
+        </div>
+        <textarea id="out" readonly spellcheck="false" aria-label="Transposed output"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="row">
+      <span class="k">What moves</span>
+      <span>Note letters, accidentals (<code style="font-family:var(--mono)">#</code>/<code style="font-family:var(--mono)">b</code>, ♯/♭), chord qualities (m, maj7, sus4, dim, aug…), the bass of slash chords, and runs of notes packed together like <code style="font-family:var(--mono)">CD#F</code>.</span>
+    </div>
+    <p><a id="exampleLink">Load an example</a> &nbsp;·&nbsp; A word is transposed only if it's a valid chord (<em>Cmaj7</em>) or reads entirely as notes, so <em>Bed</em>, <em>cabbage</em> and <em>Go</em> are left alone. Because adjacent notes are now split, two things do shift by design: a lone capital <em>A</em> (it's the note A), and all-caps words built only from the letters A–G — e.g. <em>FACE</em> or <em>BAG</em> — since those are indistinguishable from packed-note notation.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // --- Music theory core ---------------------------------------------------
+  const SHARP = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  const FLAT  = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+  const PC = {
+    'C':0,'B#':0,'C#':1,'Db':1,'D':2,'D#':3,'Eb':3,'E':4,'Fb':4,
+    'E#':5,'F':5,'F#':6,'Gb':6,'G':7,'G#':8,'Ab':8,'A':9,'A#':10,'Bb':10,'B':11,'Cb':11
+  };
+  const normAcc = s => s.replace(/♯/g,'#').replace(/♭/g,'b');
+
+  function transposeNote(note, steps, useFlat){
+    const pc = PC[normAcc(note)];
+    if(pc === undefined) return null;
+    const t = ((pc + steps) % 12 + 12) % 12;
+    return (useFlat ? FLAT : SHARP)[t];
+  }
+
+  // A note = letter A–G + optional single accidental.
+  // A chord suffix = a run built only from recognised chord fragments, so
+  // ordinary words fail to validate as a whole and are left untouched.
+  const NOTE   = "[A-G](?:#|b|♯|♭)?";
+  const SUFFIX = "(?:maj|min|dim|aug|sus|add|m|Δ|ø|°|\\+|[0-9]|[#♯b♭])*";
+  const CHORD  = new RegExp("^(" + NOTE + ")(" + SUFFIX + ")(?:/(" + NOTE + "))?$");
+  // A "run" is a maximal stretch of note/chord-ish characters. Whitespace and
+  // punctuation are separators and are preserved verbatim.
+  const RUN = /[A-Za-z0-9#♯♭/+°Δø]+/g;
+
+  // Try to read a run as back-to-back bare notes (e.g. "CD#" -> ["C","D#"]).
+  // Returns the note list only if the WHOLE run is notes, else null — so
+  // "Bed" or "cabbage" (which contain non-note letters) are never split.
+  const NOTE_STICKY = /[A-G](?:#|b|♯|♭)?/y;
+  function parseNoteSeq(run){
+    const notes = [];
+    let i = 0;
+    while(i < run.length){
+      NOTE_STICKY.lastIndex = i;
+      const m = NOTE_STICKY.exec(run);
+      if(!m || m.index !== i) return null;
+      notes.push(m[0]);
+      i = NOTE_STICKY.lastIndex;
+    }
+    return notes.length ? notes : null;
+  }
+
+  function transpose(text, steps, useFlat){
+    if(!steps) return text;
+    return text.replace(RUN, function(run){
+      // 1. Whole run is a single note or chord (Cmaj7, Am, D/F#, F#) — keep the
+      //    suffix intact and shift the root (and slash bass).
+      const m = CHORD.exec(run);
+      if(m){
+        const root = transposeNote(m[1], steps, useFlat);
+        if(root !== null){
+          let out = root + m[2];
+          if(m[3]){
+            const bass = transposeNote(m[3], steps, useFlat);
+            out += '/' + (bass === null ? m[3] : bass);
+          }
+          return out;
+        }
+      }
+      // 2. Whole run is a string of adjacent bare notes (CD#, EGA, F#Gb) —
+      //    shift each note independently.
+      const seq = parseNoteSeq(run);
+      if(seq) return seq.map(n => transposeNote(n, steps, useFlat)).join('');
+      // 3. Anything else is left exactly as written.
+      return run;
+    });
+  }
+
+  const IVAL = ['unison','minor 2nd','major 2nd','minor 3rd','major 3rd',
+                'perfect 4th','tritone','perfect 5th','minor 6th','major 6th',
+                'minor 7th','major 7th'];
+  function intervalText(steps){
+    if(steps === 0) return 'no shift';
+    const dir = steps > 0 ? 'up' : 'down';
+    const a = Math.abs(steps), oct = Math.floor(a/12), rem = a%12;
+    let name;
+    if(rem === 0) name = oct === 1 ? 'octave' : oct + ' octaves';
+    else if(oct === 0) name = IVAL[rem];
+    else name = (oct === 1 ? 'octave' : oct + ' octaves') + ' + ' + IVAL[rem];
+    return dir + ' · ' + name;
+  }
+
+  // --- DOM wiring ----------------------------------------------------------
+  const $ = id => document.getElementById(id);
+  const inEl = $('in'), outEl = $('out'), stepsEl = $('steps');
+  let useFlat = false;
+
+  function currentSteps(){
+    let v = parseInt(stepsEl.value, 10);
+    if(!Number.isFinite(v)) v = 0;
+    return v;
+  }
+
+  function run(){
+    const steps = currentSteps();
+    outEl.value = transpose(inEl.value, steps, useFlat);
+    // readout
+    const amt = $('amt');
+    amt.textContent = (steps > 0 ? '+' : '') + steps;
+    amt.classList.toggle('zero', steps === 0);
+    $('interval').textContent = intervalText(steps);
+    drawStrip(steps);
+  }
+
+  // Chromatic strip drawing (reference note = C for illustration)
+  function drawStrip(steps){
+    const svg = $('strip');
+    const N = 12, W = 720, pad = 6, gap = 4;
+    const cw = (W - pad*2 - gap*(N-1)) / N;
+    const top = 8, h = 40;
+    const fromIdx = 0;
+    const toIdx = ((steps % 12) + 12) % 12;
+    const isAcc = i => [1,3,6,8,10].includes(i);
+    let cells = '';
+    for(let i=0;i<N;i++){
+      const x = pad + i*(cw+gap);
+      let cls = isAcc(i) ? 'cell-acc' : 'cell-nat';
+      let on = false;
+      if(i === toIdx && steps !== 0){ cls = 'cell-to'; on = true; }
+      if(i === fromIdx){ cls = 'cell-from'; on = true; }
+      if(i === toIdx && i === fromIdx && steps !== 0){ cls = 'cell-to'; }
+      const label = (useFlat ? FLAT : SHARP)[i];
+      cells += '<rect x="'+x.toFixed(1)+'" y="'+top+'" width="'+cw.toFixed(1)+'" height="'+h+'" rx="4" class="'+cls+'"/>';
+      cells += '<text x="'+(x+cw/2).toFixed(1)+'" y="'+(top+h/2+4)+'" text-anchor="middle" class="celllbl'+(on?' on':'')+'">'+label+'</text>';
+    }
+    // arrow from -> to along the bottom
+    let arrow = '';
+    if(steps !== 0){
+      const cx = i => pad + i*(cw+gap) + cw/2;
+      const y = top + h + 16;
+      const x1 = cx(fromIdx), x2 = cx(toIdx);
+      const midY = y + 10;
+      arrow += '<path class="arrowpath" d="M '+x1+' '+y+' C '+x1+' '+midY+', '+x2+' '+midY+', '+x2+' '+(y+2)+'"/>';
+      const dir = x2 >= x1 ? 1 : -1;
+      arrow += '<path class="arrowhead" d="M '+x2+' '+(y-2)+' l '+(-5*dir)+' -6 l '+(10*dir)+' 0 z"/>';
+    }
+    svg.innerHTML = cells + arrow;
+
+    // caption C -> target using current spelling
+    const target = transposeNote('C', steps, useFlat);
+    $('move').textContent = steps === 0 ? 'C → C (no shift)' : ('C → ' + target);
+  }
+
+  // Events
+  inEl.addEventListener('input', run);
+  stepsEl.addEventListener('input', run);
+  $('inc').addEventListener('click', ()=>{ stepsEl.value = currentSteps()+1; run(); });
+  $('dec').addEventListener('click', ()=>{ stepsEl.value = currentSteps()-1; run(); });
+  $('chips').addEventListener('click', e=>{
+    const b = e.target.closest('button'); if(!b) return;
+    stepsEl.value = b.dataset.set; run();
+  });
+  $('sharpBtn').addEventListener('click', ()=>{
+    useFlat = false;
+    $('sharpBtn').setAttribute('aria-pressed','true');
+    $('flatBtn').setAttribute('aria-pressed','false');
+    run();
+  });
+  $('flatBtn').addEventListener('click', ()=>{
+    useFlat = true;
+    $('flatBtn').setAttribute('aria-pressed','true');
+    $('sharpBtn').setAttribute('aria-pressed','false');
+    run();
+  });
+  $('clearBtn').addEventListener('click', ()=>{ inEl.value=''; inEl.focus(); run(); });
+  $('copyBtn').addEventListener('click', ()=>{
+    const btn = $('copyBtn');
+    const done = ()=>{ btn.textContent='Copied'; btn.classList.add('ok');
+      setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('ok'); },1200); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(outEl.value).then(done, ()=>{ outEl.select(); document.execCommand('copy'); done(); });
+    } else { outEl.select(); document.execCommand('copy'); done(); }
+  });
+
+  const EXAMPLE =
+`[Verse]
+C            G            Am           F
+Somewhere over the rainbow, way up high
+C            G            F      C
+There's a land that I heard of once in a lullaby
+
+[Turnaround]
+Dm7   G7   Cmaj7   A7   D/F#   G7sus4  G7
+
+Melody (spaced):   E G A  A G E   D E F#  F# E D
+Melody (packed):   CD#FG  GFD#C   AC#EG#  (adjacent notes, no spaces)`;
+
+  $('exampleLink').addEventListener('click', ()=>{ inEl.value = EXAMPLE; run(); });
+
+  // First paint
+  inEl.value = EXAMPLE;
+  run();
+})();
+</script>
+</body>
+</html>

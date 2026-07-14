@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube Cobbler</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-section {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .upload-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            background: #0f3460;
+            color: #eee;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #f39c12;
+            color: #1a1a2e;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .card-count {
+            margin-top: 10px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .search-section {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .search-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .autocomplete-container {
+            position: relative;
+        }
+
+        #cardSearch {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #0f3460;
+            border-radius: 4px;
+            background: #0f3460;
+            color: #eee;
+        }
+
+        #cardSearch:focus {
+            outline: none;
+            border-color: #f39c12;
+        }
+
+        #cardSearch:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #0f3460;
+            border: 2px solid #f39c12;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .autocomplete-dropdown.show {
+            display: block;
+        }
+
+        .autocomplete-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #16213e;
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover,
+        .autocomplete-item.selected {
+            background: #f39c12;
+            color: #1a1a2e;
+        }
+
+        .autocomplete-item .quantity {
+            color: #888;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .autocomplete-item:hover .quantity,
+        .autocomplete-item.selected .quantity {
+            color: #1a1a2e;
+        }
+
+        .collected-section {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .collected-section h2 {
+            margin-top: 0;
+            color: #f39c12;
+        }
+
+        .collected-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .collected-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #0f3460;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .collected-list li button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .collected-list li button:hover {
+            background: #c0392b;
+        }
+
+        .empty-message {
+            color: #888;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .format-help {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .format-help code {
+            background: #0f3460;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .collected-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .collected-header h2 {
+            margin: 0;
+        }
+
+        .collected-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: #0f3460;
+            color: #eee;
+            border: 2px solid #f39c12;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #f39c12;
+            color: #1a1a2e;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:disabled:hover {
+            background: #0f3460;
+            color: #eee;
+        }
+
+        #collectedUpload {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cube Cobbler</h1>
+
+    <div class="upload-section">
+        <label for="fileUpload">Upload Card List (MTG Arena Format)</label>
+        <input type="file" id="fileUpload" accept=".txt">
+        <div class="card-count" id="cardCount">No cards loaded</div>
+        <div class="format-help">
+            Expected format: <code>1 Card Name</code> or <code>1x Card Name (SET) 123</code>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <label for="cardSearch">Search and Add Cards</label>
+        <div class="autocomplete-container">
+            <input type="text" id="cardSearch" placeholder="Start typing a card name..." disabled>
+            <div class="autocomplete-dropdown" id="dropdown"></div>
+        </div>
+    </div>
+
+    <div class="collected-section">
+        <div class="collected-header">
+            <h2>Collected Cards (<span id="collectedCount">0</span>)</h2>
+            <div class="collected-actions">
+                <input type="file" id="collectedUpload" accept=".txt">
+                <button class="btn" id="uploadCollectedBtn" disabled>Upload Collected</button>
+                <button class="btn" id="downloadCollectedBtn" disabled>Download Collected</button>
+                <button class="btn" id="downloadRemainingBtn" disabled>Download Remaining</button>
+            </div>
+        </div>
+        <ul class="collected-list" id="collectedList">
+            <li class="empty-message">No cards collected yet</li>
+        </ul>
+    </div>
+
+    <script>
+        const state = {
+            cardList: [],
+            collectedCounts: {},  // { cardName: collectedQuantity }
+            selectedIndex: -1
+        };
+
+        const fileUpload = document.getElementById('fileUpload');
+        const cardSearch = document.getElementById('cardSearch');
+        const dropdown = document.getElementById('dropdown');
+        const collectedList = document.getElementById('collectedList');
+        const cardCount = document.getElementById('cardCount');
+        const collectedCount = document.getElementById('collectedCount');
+        const collectedUpload = document.getElementById('collectedUpload');
+        const uploadCollectedBtn = document.getElementById('uploadCollectedBtn');
+        const downloadCollectedBtn = document.getElementById('downloadCollectedBtn');
+        const downloadRemainingBtn = document.getElementById('downloadRemainingBtn');
+
+        function parseArenaFormat(text) {
+            const lines = text.split('\n');
+            const cards = [];
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('//')) continue;
+
+                // Match patterns like:
+                // 1 Card Name
+                // 1x Card Name
+                // 1 Card Name (SET) 123
+                // 1x Card Name (SET) 123
+                const match = trimmed.match(/^(\d+)x?\s+(.+?)(?:\s+\([A-Z0-9]+\)\s+\d+)?$/i);
+
+                if (match) {
+                    const quantity = parseInt(match[1], 10);
+                    const name = match[2].trim();
+                    cards.push({ name, quantity });
+                }
+            }
+
+            return cards;
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target.result;
+                state.cardList = parseArenaFormat(text);
+                state.collectedCounts = {};
+                renderCollectedList();
+
+                if (state.cardList.length > 0) {
+                    cardSearch.disabled = false;
+                    const totalCards = state.cardList.reduce((sum, card) => sum + card.quantity, 0);
+                    cardCount.textContent = `${state.cardList.length} unique cards loaded (${totalCards} total)`;
+                } else {
+                    cardSearch.disabled = true;
+                    cardCount.textContent = 'No valid cards found in file';
+                }
+                updateCollectedButtons();
+            };
+            reader.readAsText(file);
+        }
+
+        function filterCards(query) {
+            if (!query) return [];
+
+            const lowerQuery = query.toLowerCase();
+            return state.cardList
+                .map(card => ({
+                    name: card.name,
+                    remaining: card.quantity - (state.collectedCounts[card.name] || 0)
+                }))
+                .filter(card => card.remaining > 0 && card.name.toLowerCase().includes(lowerQuery))
+                .slice(0, 10);
+        }
+
+        function renderDropdown(matches) {
+            if (matches.length === 0) {
+                dropdown.classList.remove('show');
+                return;
+            }
+
+            dropdown.innerHTML = matches.map((card, index) => `
+                <div class="autocomplete-item${index === state.selectedIndex ? ' selected' : ''}"
+                     data-index="${index}">
+                    ${escapeHtml(card.name)}
+                    <span class="quantity">x${card.remaining}</span>
+                </div>
+            `).join('');
+
+            dropdown.classList.add('show');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addCard(cardName) {
+            const card = state.cardList.find(c => c.name === cardName);
+            if (!card) return;
+
+            const collected = state.collectedCounts[cardName] || 0;
+            if (collected < card.quantity) {
+                state.collectedCounts[cardName] = collected + 1;
+                renderCollectedList();
+            }
+            cardSearch.value = '';
+            dropdown.classList.remove('show');
+            state.selectedIndex = -1;
+        }
+
+        function removeCard(cardName) {
+            const collected = state.collectedCounts[cardName] || 0;
+            if (collected > 1) {
+                state.collectedCounts[cardName] = collected - 1;
+            } else {
+                delete state.collectedCounts[cardName];
+            }
+            renderCollectedList();
+        }
+
+        function renderCollectedList() {
+            const entries = Object.entries(state.collectedCounts);
+            const totalCollected = entries.reduce((sum, [, count]) => sum + count, 0);
+            collectedCount.textContent = totalCollected;
+
+            if (entries.length === 0) {
+                collectedList.innerHTML = '<li class="empty-message">No cards collected yet</li>';
+                updateCollectedButtons();
+                return;
+            }
+
+            collectedList.innerHTML = entries.map(([cardName, count]) => `
+                <li>
+                    <span>${escapeHtml(cardName)} x${count}</span>
+                    <button onclick="removeCard('${escapeHtml(cardName).replace(/'/g, "\\'")}')">Remove</button>
+                </li>
+            `).join('');
+
+            updateCollectedButtons();
+        }
+
+        cardSearch.addEventListener('input', (e) => {
+            const query = e.target.value;
+            state.selectedIndex = -1;
+            const matches = filterCards(query);
+            renderDropdown(matches);
+        });
+
+        cardSearch.addEventListener('keydown', (e) => {
+            const matches = filterCards(cardSearch.value);
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                state.selectedIndex = Math.min(state.selectedIndex + 1, matches.length - 1);
+                renderDropdown(matches);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                state.selectedIndex = Math.max(state.selectedIndex - 1, 0);
+                renderDropdown(matches);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (state.selectedIndex >= 0 && matches[state.selectedIndex]) {
+                    addCard(matches[state.selectedIndex].name);
+                } else if (matches.length > 0) {
+                    addCard(matches[0].name);
+                }
+            } else if (e.key === 'Escape') {
+                dropdown.classList.remove('show');
+                state.selectedIndex = -1;
+            }
+        });
+
+        dropdown.addEventListener('click', (e) => {
+            const item = e.target.closest('.autocomplete-item');
+            if (item) {
+                const index = parseInt(item.dataset.index, 10);
+                const matches = filterCards(cardSearch.value);
+                if (matches[index]) {
+                    addCard(matches[index].name);
+                }
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.autocomplete-container')) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        fileUpload.addEventListener('change', handleFileUpload);
+
+        function downloadCollected() {
+            const lines = Object.entries(state.collectedCounts)
+                .map(([name, count]) => `${count} ${name}`)
+                .join('\n');
+
+            const blob = new Blob([lines], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'collected-cards.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadRemaining() {
+            const lines = state.cardList
+                .map(card => ({
+                    name: card.name,
+                    remaining: card.quantity - (state.collectedCounts[card.name] || 0)
+                }))
+                .filter(card => card.remaining > 0)
+                .map(card => `${card.remaining} ${card.name}`)
+                .join('\n');
+
+            const blob = new Blob([lines], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'remaining-cards.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function handleCollectedUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const text = e.target.result;
+                const parsed = parseArenaFormat(text);
+
+                // Only add cards that exist in the card list and respect max quantities
+                for (const { name, quantity } of parsed) {
+                    const card = state.cardList.find(c => c.name === name);
+                    if (card) {
+                        const maxAllowed = card.quantity;
+                        const toAdd = Math.min(quantity, maxAllowed);
+                        if (toAdd > 0) {
+                            state.collectedCounts[name] = toAdd;
+                        }
+                    }
+                }
+
+                renderCollectedList();
+                updateCollectedButtons();
+            };
+            reader.readAsText(file);
+            // Reset input so same file can be selected again
+            event.target.value = '';
+        }
+
+        function updateCollectedButtons() {
+            const hasCollected = Object.keys(state.collectedCounts).length > 0;
+            const hasCardList = state.cardList.length > 0;
+            downloadCollectedBtn.disabled = !hasCollected;
+            uploadCollectedBtn.disabled = !hasCardList;
+            downloadRemainingBtn.disabled = !hasCardList;
+        }
+
+        uploadCollectedBtn.addEventListener('click', () => collectedUpload.click());
+        downloadCollectedBtn.addEventListener('click', downloadCollected);
+        downloadRemainingBtn.addEventListener('click', downloadRemaining);
+        collectedUpload.addEventListener('change', handleCollectedUpload);
+    </script>
+</body>
+</html>

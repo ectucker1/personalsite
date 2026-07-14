@@ -1,0 +1,9 @@
+# Host
+Host: https://ectcetera.net/
+
+# Sitemaps
+Sitemap: https://ectcetera.net/sitemap-index.xml
+
+# *
+User-Agent: *
+Disallow:

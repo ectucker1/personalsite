@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+---
+<BaseLayout title="500">
+    <h2 class="section-title-break">500 Internal Server Error</h2>
+    <div class="section-generic">
+        <p>{error instanceof Error ? error.message : "Unknown error"}</p>
+        <a href="/">Return Home</a>
+    </div>
+</BaseLayout>

@@ -217,12 +217,12 @@ blockquote > p {
     margin-right: 0.75rem;
 }
 
-aside {
+aside:not([class]) {
     border-left: 2px solid var(--accent-general);
     background: var(--block-background);
     font-size: 0.9rem;
 }
-aside > p {
+aside:not([class]) > p {
     margin-left: 0.75rem;
     margin-right: 0.75rem;
     font-size: 0.9rem;
@@ -398,4 +398,29 @@ a.readmore::before {
     h3 {
         margin-top: 0;
     }
+}
+
+/* Time-traveler's Note */
+aside.timenote {
+    background-color: var(--block-background);
+    border: 2px solid var(--accent-general);
+    display: flex;
+}
+aside.timenote > p {
+    margin-left: 0.05rem;
+    margin-right: 0.75rem;
+    font-size: 0.9rem;
+}
+span.timeicon:before {
+    content: "\ea04";
+    margin-left: 0.75rem;
+    margin-right: 0.5rem;
+    font-family: "ectcetera-icons" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.25em;
+    color: var(--accent-general);
+    position: relative;
+    top: 0.25em;
 }

@@ -16,5 +16,11 @@
     "prefix": "ectcetera-icons",
     "className": "ectcetera-icons-03-rss-solid",
     "unicode": "&#59907;"
+  },
+  "04-clock-regular-full": {
+    "encodedCode": "\\ea04",
+    "prefix": "ectcetera-icons",
+    "className": "ectcetera-icons-04-clock-regular-full",
+    "unicode": "&#59908;"
   }
 }
